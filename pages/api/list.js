@@ -20,7 +20,7 @@
 //   }
 // }
 
-import { connectToDatabase } from "../../lib/mongodb";
+import { connectToDatabase } from "../../lib/mongodbjs";
 
 export default async function handler(request, response) {
 

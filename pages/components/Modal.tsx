@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { createPlayer, updatePlayer } from "../utils/managePlayer";
+import { createPlayer, updatePlayer } from "../../utils/managePlayer";
 
 interface PlayerData {
   name: string;

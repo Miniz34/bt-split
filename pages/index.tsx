@@ -1,5 +1,5 @@
 import Head from "next/head";
-import clientPromise from "../lib/mongodb";
+import clientPromise from "../lib/mongodb.ts";
 import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
 import { useEffect, useState } from "react";
 import { createPlayer, updatePlayer } from "./utils/managePlayer";

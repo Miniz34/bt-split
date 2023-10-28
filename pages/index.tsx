@@ -1,5 +1,6 @@
 import Head from "next/head";
-import clientPromise from "../lib/mongodb.ts";
+// import clientPromise from "../lib/mongodb";
+import connectToDatabase from "../lib/mongodb";
 import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
 import { useEffect, useState } from "react";
 import { createPlayer, updatePlayer } from "./utils/managePlayer";
@@ -23,7 +24,7 @@ export const getServerSideProps: GetServerSideProps<
   ConnectionStatus
 > = async () => {
   try {
-    await clientPromise;
+    await connectToDatabase;
     return {
       props: { isConnected: true },
     };

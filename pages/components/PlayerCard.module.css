@@ -1,0 +1,33 @@
+.card {
+  display: flex;
+  gap: 25px;
+}
+
+.carddata {
+  background-color: grey;
+  border: solid red 1px;
+}
+
+.blackk {
+  opacity: 0;
+}
+
+.greenn {
+  opacity: 0;
+}
+
+.red {
+  color: red;
+}
+
+.yellow {
+  color: yellow;
+}
+
+.orange {
+  color: orange;
+}
+
+.black {
+  color: black;
+}

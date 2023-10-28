@@ -1,96 +1,121 @@
-import Head from 'next/head'
-import clientPromise from '../lib/mongodb'
-import type { InferGetServerSidePropsType, GetServerSideProps } from 'next'
+import Head from "next/head";
+import clientPromise from "../lib/mongodb";
+import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
+import { useEffect, useState } from "react";
+import { createPlayer, updatePlayer } from "./utils/managePlayer";
+import Modal from "./components/Modal";
+import PlayerCard from "./components/PlayerCard";
+import App from "./app";
 
 type ConnectionStatus = {
-  isConnected: boolean
+  isConnected: boolean;
+};
+
+interface Player {
+  _id: string;
+  name: string;
+  class: string;
+  token: string;
+  beuteu: string;
 }
 
 export const getServerSideProps: GetServerSideProps<
   ConnectionStatus
 > = async () => {
   try {
-    await clientPromise
-    // `await clientPromise` will use the default database passed in the MONGODB_URI
-    // However you can use another database (e.g. myDatabase) by replacing the `await clientPromise` with the following code:
-    //
-    // `const client = await clientPromise`
-    // `const db = client.db("myDatabase")`
-    //
-    // Then you can execute queries against your database like so:
-    // db.find({}) or any of the MongoDB Node Driver commands
-
+    await clientPromise;
     return {
       props: { isConnected: true },
-    }
+    };
   } catch (e) {
-    console.error(e)
+    console.error(e);
     return {
       props: { isConnected: false },
-    }
+    };
   }
-}
+};
 
 export default function Home({
   isConnected,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const [players, setPlayers] = useState<Player[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      const results = await fetch("/api/list").then((response) =>
+        response.json()
+      );
+      setPlayers(results);
+    })();
+  }, []);
+
+  const [newBeuteu, setNewBeuteu] = useState("");
+  console.log(newBeuteu);
+
+  const [showModal, setShowModal] = useState(false);
+
+  const openModal = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
+  //TODO handle any
+  const handleSavePlayer = (playerData: any) => {
+    // Handle saving player data (e.g., send it to your API)
+    console.log("Saving player:", playerData);
+    createPlayer(playerData); // Call the createPlayer function with the player data
+    closeModal();
+  };
+
+  console.log(players);
+
   return (
     <div className="container">
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+      <App />
       <main>
-        <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js with MongoDB!</a>
-        </h1>
+        <PlayerCard players={players} />
 
-        {isConnected ? (
-          <h2 className="subtitle">You are connected to MongoDB</h2>
-        ) : (
-          <h2 className="subtitle">
-            You are NOT connected to MongoDB. Check the <code>README.md</code>{' '}
-            for instructions.
-          </h2>
-        )}
+        <button
+          onClick={(e) => {
+            createPlayer;
+          }}
+        >
+          create player
+        </button>
+        {showModal ? (
+          <Modal
+            show={showModal}
+            handleClose={closeModal}
+            handleSave={handleSavePlayer}
+          />
+        ) : null}
 
-        <p className="description">
-          Get started by editing <code>pages/index.js</code>
-        </p>
-
-        <div className="grid">
-          <a href="https://nextjs.org/docs" className="card">
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className="card">
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className="card"
+        <div>
+          <input
+            type="text"
+            value={newBeuteu}
+            onChange={(e) => setNewBeuteu(e.target.value)}
+          />
+          <button
+            onClick={(e) => {
+              updatePlayer(newBeuteu);
+            }}
           >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="card"
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+            Update Beuteu
+          </button>
         </div>
       </main>
+
+      <div>
+        <button onClick={openModal}>open Modal</button>
+      </div>
 
       <footer>
         <a
@@ -98,7 +123,7 @@ export default function Home({
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Powered by{" "}
           <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
         </a>
       </footer>
@@ -253,5 +278,5 @@ export default function Home({
         }
       `}</style>
     </div>
-  )
+  );
 }

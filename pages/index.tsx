@@ -2,7 +2,7 @@ import Head from "next/head";
 import clientPromise from "../lib/mongodb";
 import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
 import { useEffect, useState } from "react";
-import { createPlayer, updatePlayer } from "./utils/managePlayer";
+import { createPlayer, updatePlayer } from "../utils/managePlayer";
 import Modal from "./components/Modal";
 import PlayerCard from "./components/PlayerCard";
 import App from "./app";

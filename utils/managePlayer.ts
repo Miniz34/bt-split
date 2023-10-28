@@ -1,6 +1,4 @@
-import Player from "../interface/Player"; // Import the Player interface
-
-export const createPlayer = async (playerData: Player) => {
+export const createPlayer = async (playerData: any) => {
   try {
     const response = await fetch("/api/createPlayer", {
       method: "POST",

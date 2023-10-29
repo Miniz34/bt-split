@@ -124,6 +124,7 @@ export default function Home({
       <div>
         <button onClick={openModal}>open Modal</button>
       </div>
+      <Raids />
 
       <style jsx>{`
         .container {

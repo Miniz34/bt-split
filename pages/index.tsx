@@ -89,6 +89,7 @@ export default function Home({
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <main>
+          <h1>RANDOM NOUVEAU TEXT</h1>
           <PlayerCard players={players} />
 
           <button

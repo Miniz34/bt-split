@@ -38,9 +38,14 @@ export const createPlayer = async (playerData: any) => {
         class: playerData.class,
         role: playerData.role,
         token: getTokenType(playerData.class),
-        alt: playerData.alt,
-        altClass: playerData.altClass,
         raid: 2,
+        alt: {
+          name: playerData.alt,
+          Class: playerData.altClass,
+          role: playerData.altRole,
+          raid: 1,
+        },
+
         set: {
           head: null,
           shoulders: "NORMAL",

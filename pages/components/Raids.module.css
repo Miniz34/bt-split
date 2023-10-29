@@ -1,13 +1,53 @@
 .raidscontainer {
   position: fixed;
+  color: white;
   right: 0px;
   top: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  background-color: green;
+  background-color: #1e1e1e;
   width: 25%;
   min-height: 100vh;
-  border: solid red 2px;
   margin: none;
+}
+
+.raiddata {
+  padding-bottom: 10px;
+  border-bottom: solid black 2px;
+}
+
+.raidtitle {
+  display: flex;
+  margin-top: 0px;
+  padding-bottom: 10px;
+
+  justify-content: center;
+  border-bottom: solid black 2px;
+}
+.missingbuff {
+  margin-left: 5px;
+}
+
+.missingbufflist {
+  display: flex;
+  gap: 10px;
+}
+
+.rolemain {
+  margin-left: 5px;
+}
+
+.rolelist {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.tokencount {
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+  margin-left: 5px;
 }

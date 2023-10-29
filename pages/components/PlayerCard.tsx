@@ -1,40 +1,97 @@
 import styles from "./PlayerCard.module.css";
+import { useState, useEffect } from "react";
+import React from "react";
+import Select from "react-select";
 import { getBorderColor, getClassColor } from "../../utils/colors";
 import { setRaidOne } from "../../utils//managePlayer"; // Replace with your API client
+import helm from "../../public/helmet-game-svgrepo-com.svg";
+import {
+  FaBeer,
+  FaGamepad,
+  FaHeadset,
+  FaKeyboard,
+  FaStar,
+} from "react-icons/fa"; // Import icons you want to use
 
-function PlayerCard({ players }: any) {
+import {
+  GiCenturionHelmet,
+  GiSpikedShoulderArmor,
+  GiChestArmor,
+  GiWinterGloves,
+} from "react-icons/gi";
+import { PiPantsFill } from "react-icons/pi";
+
+import SetModal from "./SetModal";
+
+function PlayerCard({ players, updateRaidForPlayer }: any) {
   const getSetItemClassName = (value: string) => {
     if (value === null) {
-      return styles.red;
+      return styles.black;
     } else if (value === "NORMAL") {
-      return styles.yellow;
+      return styles.green;
     } else if (value === "HEROIC") {
       return styles.orange;
     } else if (value === "MYTHIC") {
-      return styles.green;
+      return styles.red;
     } else {
-      return styles.blackk;
+      return styles.black;
     }
+  };
+
+  const renderEquipmentIcon = (value: string) => {
+    if (value === "head") {
+      return <GiCenturionHelmet />;
+    } else if (value === "shoulders") {
+      return <GiSpikedShoulderArmor />;
+    } else if (value === "chest") {
+      return <GiChestArmor />;
+    } else if (value === "hands") {
+      return <GiWinterGloves />;
+    } else if (value === "legs") {
+      return <PiPantsFill />;
+    }
+    // You can return another icon (e.g., a default icon) for other values
+    return <FaBeer />;
   };
 
   console.log("Received players data:", players);
 
-  async function updateRaidForPlayer(
-    playerId: any,
-    raidOneValue: number,
-    raidTwoValue: number
-  ) {
-    try {
-      const response = await setRaidOne(playerId, raidOneValue, raidTwoValue);
-      if (response.ok) {
-        console.log("Raid updated successfully");
-      } else {
-        console.error("Failed to update raid");
-      }
-    } catch (error) {
-      console.error("Error updating raid:", error);
-    }
-  }
+  // async function updateRaidForPlayer(
+  //   playerId: any,
+  //   raidOneValue: number,
+  //   raidTwoValue: number
+  // ) {
+  //   try {
+  //     const response = await setRaidOne(playerId, raidOneValue, raidTwoValue);
+  //     if (response.ok) {
+  //       console.log("Raid updated successfully");
+  //     } else {
+  //       console.error("Failed to update raid");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error updating raid:", error);
+  //   }
+  // }
+
+  const [displayModal, setDisplayModal] = useState(false);
+  const [selectedPlayer, setSelectedPlayer] = useState(null);
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  const showModal = (player: any, item: any) => {
+    setSelectedPlayer(player);
+    setSelectedItem(item);
+    setDisplayModal(true);
+    console.log("modal opened");
+  };
+
+  const handleValueClick = (value: any) => {
+    // Handle the clicked value here, for example, log it
+    console.log("Clicked value: ", value);
+  };
+
+  const handleCloseModal = () => {
+    setDisplayModal(false);
+  };
 
   return (
     <>
@@ -45,46 +102,75 @@ function PlayerCard({ players }: any) {
               key={player._id}
               className={styles.carddata}
               style={{
-                borderTop: "4px solid " + getBorderColor(player.main.class),
+                borderTop: "6px solid " + getBorderColor(player.main.class),
               }}
             >
-              <p className={getClassColor(player.main.class)}>
-                {player.main.name}
-              </p>
-              {/* <p>{player.class}</p> */}
-              <p>{player.main.token}</p>
-              <p className={getClassColor(player.alt.Class)}>
-                {player.alt.name}
-              </p>
-              <p> {player.alt.Class}</p>
-              <p>{player.main.role}</p>
+              <div className={styles.textcard}>
+                <div className={styles.textcardmain}>
+                  <h3
+                    className={`${getClassColor(player.main.class)} ${
+                      styles.mainchar
+                    }`}
+                  >
+                    {player.main.name}
+                  </h3>
+                  {/* <p>{player.class}</p> */}
+                  <p>{player.main.token}</p>
+                </div>
+                <p className={getClassColor(player.alt.class)}>
+                  {player.alt.name}
+                </p>
+              </div>
 
-              {/* <p>{player.lastModified}</p> */}
               <div>
-                <p></p>
-                <ul>
-                  {Object.keys(player.set).map((setItem) => (
-                    <li
-                      key={setItem}
-                      className={getSetItemClassName(player.set[setItem])}
-                    >
-                      {setItem}: {player.set[setItem]}
-                    </li>
-                  ))}
+                <ul className={styles.list}>
+                  <div style={{ display: "flex", flexDirection: "column" }}>
+                    {Object.keys(player.set).map((setItem, index) =>
+                      index < 3 ? (
+                        <li
+                          key={setItem}
+                          className={`${getSetItemClassName(
+                            player.set[setItem]
+                          )} ${styles.gear}`}
+                          onClick={() => showModal(player, setItem)}
+                        >
+                          {renderEquipmentIcon(setItem)}
+                        </li>
+                      ) : null
+                    )}
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "column" }}>
+                    {Object.keys(player.set).map((setItem, index) =>
+                      index >= 3 ? (
+                        <li
+                          key={setItem}
+                          className={`${getSetItemClassName(
+                            player.set[setItem]
+                          )} ${styles.gear}`}
+                          onClick={() => showModal(player, setItem)}
+                        >
+                          {renderEquipmentIcon(setItem)}
+                        </li>
+                      ) : null
+                    )}
+                  </div>
                 </ul>
               </div>
               <div className={styles.buttons}>
                 <button
-                  className={styles.button}
+                  className={`${styles.button} ${
+                    player.main.raid === 1 ? styles.selected : ""
+                  }`}
                   onClick={(e) => {
                     updateRaidForPlayer(player._id, 1, 2);
                   }}
                 >
-                  {" "}
                   1
                 </button>
                 <button
-                  className={styles.button}
+                  className={`${styles.button} ${
+                    player.main.raid === 2 ? styles.selected : ""
+                  }`}
                   onClick={(e) => {
                     updateRaidForPlayer(player._id, 2, 1);
                   }}
@@ -99,6 +185,14 @@ function PlayerCard({ players }: any) {
           <p>Invalid players data</p>
         )}
       </div>
+      {displayModal ? (
+        <SetModal
+          onValueClick={handleValueClick}
+          player={selectedPlayer}
+          item={selectedItem}
+          handleCloseModal={handleCloseModal}
+        />
+      ) : null}
     </>
   );
 }

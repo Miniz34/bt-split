@@ -46,7 +46,7 @@ export const createPlayer = async (playerData: any) => {
           name: playerData.alt,
 
           //TODO remove caps class
-          Class: playerData.altClass,
+          class: playerData.altClass,
           role: playerData.altRole,
           raid: 1,
         },
@@ -131,6 +131,66 @@ export async function setRaidOne(
     return response;
   } catch (error) {
     console.error("Error updating raid:", error);
+    return { ok: false };
+  }
+}
+
+// export async function updateSet(playerId: any, setPiece: any, setValue: any) {
+//   try {
+//     const response = await fetch("/api/updateSet", {
+//       method: "PUT",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify({ playerId, setValue, setPiece }),
+//     });
+//     return response;
+//   } catch (error) {
+//     console.error("Error updating set", error);
+//     return { ok: false };
+//   }
+// }
+
+export async function updateSet(
+  playerId: any,
+  setPiece: any,
+  setValue: any,
+  lastModified: any
+) {
+  try {
+    // Make the PUT request to update the set
+    const response = await fetch("/api/updateSet", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ playerId, setValue, setPiece, lastModified }),
+    });
+
+    if (response.ok) {
+      console.log("Set updated successfully");
+    } else {
+      console.error("Failed to update set");
+      return { ok: false };
+    }
+
+    // After the PUT request, perform a GET request
+    const getResponse = await fetch("/api/list", {
+      method: "GET",
+      // You can include headers if necessary
+    });
+
+    if (getResponse.ok) {
+      // Handle successful GET request here
+      const data = await getResponse.json();
+      console.log("Set data retrieved successfully:", data);
+    } else {
+      console.error("Failed to retrieve set data");
+    }
+
+    return response;
+  } catch (error) {
+    console.error("Error updating or getting set data", error);
     return { ok: false };
   }
 }

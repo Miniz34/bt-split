@@ -7,6 +7,8 @@ import Modal from "./components/Modal";
 import PlayerCard from "./components/PlayerCard";
 import App from "./app";
 import Raids from "./components/Raids";
+import styles from "./index.module.css";
+import { setRaidOne } from "../utils//managePlayer"; // Replace with your API client
 
 type ConnectionStatus = {
   isConnected: boolean;
@@ -56,6 +58,37 @@ export default function Home({
   const [sortedData, setSortedData] = useState<Player[]>([]); // To store the current sorted data
   const [sortByToken, setSortByToken] = useState(false); // To indicate whether to sort by token
 
+  const [displayModal, setDisplayModal] = useState(false);
+  async function updateRaidForPlayer(
+    playerId: any,
+    raidOneValue: number,
+    raidTwoValue: number
+  ) {
+    try {
+      const response = await setRaidOne(playerId, raidOneValue, raidTwoValue);
+      if (response.ok) {
+        console.log("Raid updated successfully");
+        // Update the state of the player whose raid was changed
+        setPlayers((prevPlayers) =>
+          prevPlayers.map((player) => {
+            if (player._id === playerId) {
+              // Update the player's raid
+              return {
+                ...player,
+                main: { ...player.main, raid: raidOneValue },
+              };
+            }
+            return player;
+          })
+        );
+      } else {
+        console.error("Failed to update raid");
+      }
+    } catch (error) {
+      console.error("Error updating raid:", error);
+    }
+  }
+
   useEffect(() => {
     (async () => {
       const results = await fetch("/api/list").then((response) =>
@@ -68,12 +101,16 @@ export default function Home({
         newUserId = lastUser.playerId + 1;
       }
 
+      setPlayers(results);
+
       if (results.lastModified !== lastModified) {
         setPlayers(results);
         setLastModified(results.lastModified);
       }
     })();
-  }, [lastModified]);
+  }, []);
+
+  console.log("RESULTS HERE", players);
 
   const [newBeuteu, setNewBeuteu] = useState("");
   const currentDate = new Date();
@@ -164,17 +201,32 @@ export default function Home({
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <main>
-          <h1>RANDOM NOUVEAU TEXT</h1>
-          <button onClick={toggleSortPlayers}>
-            Sort by {sortByToken ? "Role" : "Token"}
-          </button>
+          <div className={styles.indexhead}>
+            <h1 className={styles.maintitle}>Splits Bloody Teraz</h1>
+            <div className={styles.buttonlist}>
+              <button
+                onClick={toggleSortPlayers}
+                className={styles.buttonheader}
+              >
+                Sort by {sortByToken ? "Role" : "Token"}
+              </button>
+              <button className={styles.buttonheader}>Nuke</button>
+            </div>
+          </div>
+
           <div className="cards-container">
             {Object.entries(
               sortByToken ? groupedPlayersToken : groupedPlayers
             ).map(([role, players]) => (
               <div key={role} className="role-section">
                 <div className="player-cards">
-                  <PlayerCard key={role} players={players} />
+                  <PlayerCard
+                    key={role}
+                    players={players}
+                    displayModal={displayModal}
+                    setDisplayModal={setDisplayModal}
+                    updateRaidForPlayer={updateRaidForPlayer}
+                  />
                 </div>
               </div>
             ))}
@@ -226,7 +278,6 @@ export default function Home({
             justify-content: center;
             align-items: center;
             width: 75%;
-            border: solid red 2px;
           }
 
           main {
@@ -358,6 +409,7 @@ export default function Home({
         <style jsx global>{`
           html,
           body {
+            background-color: #121212;
             padding: 0;
             margin: 0;
             font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,

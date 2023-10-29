@@ -2,11 +2,11 @@ import styles from "./Raids.module.css";
 
 function Raids({ compo }: any) {
   console.log("compo ici", compo);
-  const raidUn = compo.filter((e) => {
+  const raidUn = compo.filter((e: any) => {
     if (e.raid === 1) return e;
   });
 
-  const test = raidUn.map((e) => e.name);
+  const test = raidUn.map((e: any) => e.name);
   console.log(test);
 
   console.log(raidUn);

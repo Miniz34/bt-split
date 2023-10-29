@@ -40,7 +40,7 @@ export const createPlayer = async (playerData: any) => {
         token: getTokenType(playerData.class),
         alt: playerData.alt,
         altClass: playerData.altClass,
-        raid: 1,
+        raid: 2,
         set: {
           head: null,
           shoulders: "NORMAL",

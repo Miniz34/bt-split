@@ -34,13 +34,18 @@ export const createPlayer = async (playerData: any) => {
         "Content-Type": "application/json", // Set the content type for JSON data
       },
       body: JSON.stringify({
-        name: playerData.name,
-        class: playerData.class,
-        role: playerData.role,
-        token: getTokenType(playerData.class),
-        raid: 2,
+        playerId: 34,
+        main: {
+          name: playerData.name,
+          class: playerData.class,
+          role: playerData.role,
+          token: getTokenType(playerData.class),
+          raid: 2,
+        },
         alt: {
           name: playerData.alt,
+
+          //TODO remove caps class
           Class: playerData.altClass,
           role: playerData.altRole,
           raid: 1,
@@ -89,3 +94,43 @@ export const updatePlayer = async (newBeuteu: any, lastModified: any) => {
     console.error("Error updating player name:", error);
   }
 };
+
+// export const setRaidOne = async (raidOneValue: number, raidTwoValue: number) => {
+//   try {
+//     const response = await fetch("/api/updateRaid", {
+//       method: "PUT",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify({ raidOneValue, raidTwoValue }),
+//     });
+//     if (response.ok) {
+//       // Handle successful update here
+//       console.log("Player name updated successfully");
+//     } else {
+//       console.error("Failed to update player name");
+//     }
+//   } catch (error) {
+//     console.error("Error updating player name:", error);
+//   }
+// };
+
+export async function setRaidOne(
+  playerId: any,
+  raidOneValue: number,
+  raidTwoValue: number
+) {
+  try {
+    const response = await fetch("/api/updateRaid", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ playerId, raidOneValue, raidTwoValue }),
+    });
+    return response;
+  } catch (error) {
+    console.error("Error updating raid:", error);
+    return { ok: false };
+  }
+}

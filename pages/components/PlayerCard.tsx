@@ -1,5 +1,6 @@
 import styles from "./PlayerCard.module.css";
 import { getBorderColor, getClassColor } from "../../utils/colors";
+import { setRaidOne } from "../../utils//managePlayer"; // Replace with your API client
 
 function PlayerCard({ players }: any) {
   const getSetItemClassName = (value: string) => {
@@ -16,6 +17,23 @@ function PlayerCard({ players }: any) {
     }
   };
 
+  async function updateRaidForPlayer(
+    playerId: any,
+    raidOneValue: number,
+    raidTwoValue: number
+  ) {
+    try {
+      const response = await setRaidOne(playerId, raidOneValue, raidTwoValue);
+      if (response.ok) {
+        console.log("Raid updated successfully");
+      } else {
+        console.error("Failed to update raid");
+      }
+    } catch (error) {
+      console.error("Error updating raid:", error);
+    }
+  }
+
   return (
     <>
       <div className={styles.card}>
@@ -25,12 +43,19 @@ function PlayerCard({ players }: any) {
               key={player._id}
               className={styles.carddata}
               style={{
-                borderTop: "4px solid " + getBorderColor(player.class),
+                borderTop: "4px solid " + getBorderColor(player.main.class),
               }}
             >
-              <p className={getClassColor(player.class)}>{player.name}</p>
+              <p className={getClassColor(player.main.class)}>
+                {player.main.name}
+              </p>
               {/* <p>{player.class}</p> */}
-              <p>{player.token}</p>
+              <p>{player.main.token}</p>
+              <p className={getClassColor(player.alt.Class)}>
+                {player.alt.name}
+                {player.alt.class}
+              </p>
+
               {/* <p>{player.lastModified}</p> */}
               <div>
                 <p></p>
@@ -45,7 +70,25 @@ function PlayerCard({ players }: any) {
                   ))}
                 </ul>
               </div>
-              <p>beuteu: {player.beuteu}</p>
+              <div className={styles.buttons}>
+                <button
+                  className={styles.button}
+                  onClick={(e) => {
+                    updateRaidForPlayer(player._id, 1, 2);
+                  }}
+                >
+                  {" "}
+                  1
+                </button>
+                <button
+                  className={styles.button}
+                  onClick={(e) => {
+                    updateRaidForPlayer(player._id, 2, 1);
+                  }}
+                >
+                  2
+                </button>
+              </div>
             </div>
           ))
         ) : (

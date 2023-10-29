@@ -10,6 +10,17 @@
   background-color: grey;
 }
 
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 5px;
+}
+
+.button {
+  height: 35px;
+  width: 35px;
+}
+
 .blackk {
   opacity: 0;
 }

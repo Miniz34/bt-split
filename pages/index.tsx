@@ -48,6 +48,14 @@ export default function Home({
         response.json()
       );
 
+      let newUserId = 1;
+      const lastUser = results[results.length - 1]; // Assuming results is an array
+      if (lastUser) {
+        newUserId = lastUser.playerId + 1;
+      }
+
+      console.log("last user here", lastUser);
+
       if (results.lastModified !== lastModified) {
         setPlayers(results);
         setLastModified(results.lastModified);
@@ -58,8 +66,6 @@ export default function Home({
   const [newBeuteu, setNewBeuteu] = useState("");
   const currentDate = new Date();
   const isoDate = currentDate.toISOString();
-
-  console.log(newBeuteu);
 
   const [showModal, setShowModal] = useState(true);
 

@@ -1,11 +1,13 @@
 .card {
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 25px;
 }
 
 .carddata {
   background-color: grey;
-  border: solid red 1px;
 }
 
 .blackk {
@@ -31,4 +33,44 @@
 
 .black {
   color: black;
+}
+
+.mage {
+  color: #69ccf0;
+}
+.priest {
+  color: #ffffff;
+}
+.paladin {
+  color: #f58cba;
+}
+.shaman {
+  color: #0070de;
+}
+.warrior {
+  color: #c79c6e;
+}
+.evoker {
+  color: #33937f;
+}
+.monk {
+  color: #00ff96;
+}
+.hunter {
+  color: #abd473;
+}
+.warlock {
+  color: #9482c9;
+}
+.druid {
+  color: #ff7d0a;
+}
+.dh {
+  color: #a330c9;
+}
+.dk {
+  color: #c41f3b;
+}
+.rogue {
+  color: #fff569;
 }

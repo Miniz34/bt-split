@@ -5,6 +5,8 @@ interface PlayerData {
   name: string;
   class: string;
   alt: string;
+  altClass: string;
+  role: string;
 }
 
 interface PlayerModalProps {
@@ -22,6 +24,8 @@ const Modal: React.FC<PlayerModalProps> = ({
     name: "",
     class: "",
     alt: "",
+    altClass: "",
+    role: "",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -71,11 +75,31 @@ const Modal: React.FC<PlayerModalProps> = ({
                 />
               </div>
               <div className="form-group">
+                <label>Role</label>
+                <input
+                  type="text"
+                  name="role"
+                  value={playerData.role}
+                  onChange={handleChange}
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group">
                 <label>Alt</label>
                 <input
                   type="text"
                   name="alt"
                   value={playerData.alt}
+                  onChange={handleChange}
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group">
+                <label>alt Class</label>
+                <input
+                  type="text"
+                  name="altClass"
+                  value={playerData.altClass}
                   onChange={handleChange}
                   className="form-control"
                 />

@@ -6,6 +6,7 @@ import { createPlayer, updatePlayer } from "../utils/managePlayer";
 import Modal from "./components/Modal";
 import PlayerCard from "./components/PlayerCard";
 import App from "./app";
+import Raids from "./components/Raids";
 
 type ConnectionStatus = {
   isConnected: boolean;
@@ -39,27 +40,35 @@ export default function Home({
   isConnected,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const [players, setPlayers] = useState<Player[]>([]);
+  const [lastModified, setLastModified] = useState(""); // Initialize with an empty string
 
   useEffect(() => {
     (async () => {
       const results = await fetch("/api/list").then((response) =>
         response.json()
       );
-      setPlayers(results);
+
+      if (results.lastModified !== lastModified) {
+        setPlayers(results);
+        setLastModified(results.lastModified);
+      }
     })();
-  }, []);
+  }, [lastModified]);
 
   const [newBeuteu, setNewBeuteu] = useState("");
+  const currentDate = new Date();
+  const isoDate = currentDate.toISOString();
+
   console.log(newBeuteu);
 
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(true);
 
   const openModal = () => {
     setShowModal(true);
   };
 
   const closeModal = () => {
-    setShowModal(false);
+    setShowModal(true);
   };
 
   //TODO handle any
@@ -78,7 +87,6 @@ export default function Home({
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <App />
       <main>
         <PlayerCard players={players} />
 
@@ -105,7 +113,7 @@ export default function Home({
           />
           <button
             onClick={(e) => {
-              updatePlayer(newBeuteu);
+              updatePlayer(newBeuteu, isoDate);
             }}
           >
             Update Beuteu
@@ -116,17 +124,6 @@ export default function Home({
       <div>
         <button onClick={openModal}>open Modal</button>
       </div>
-
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{" "}
-          <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
-        </a>
-      </footer>
 
       <style jsx>{`
         .container {
@@ -262,6 +259,7 @@ export default function Home({
           }
         }
       `}</style>
+      {/* background-color: #121212; */}
 
       <style jsx global>{`
         html,

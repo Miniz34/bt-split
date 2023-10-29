@@ -1,5 +1,33 @@
 export const createPlayer = async (playerData: any) => {
   try {
+    const currentDate = new Date();
+    const isoDate = currentDate.toISOString();
+
+    const getTokenType = (value: string) => {
+      if (value === null) {
+        return null;
+      } else if (value === "Mage" || value === "Hunter" || value === "Druid") {
+        return "Mystic";
+      } else if (
+        value === "Priest" ||
+        value === "Paladin" ||
+        value === "Shaman"
+      ) {
+        return "Venerated";
+      } else if (
+        value === "Monk" ||
+        value === "Rogue" ||
+        value === "Evoker" ||
+        value === "Warrior"
+      ) {
+        return "Zenith";
+      } else if (value === "DH" || value === "DK" || value === "Warlock") {
+        return "Dreadful";
+      } else {
+        return null;
+      }
+    };
+
     const response = await fetch("/api/createPlayer", {
       method: "POST",
       headers: {
@@ -8,8 +36,11 @@ export const createPlayer = async (playerData: any) => {
       body: JSON.stringify({
         name: playerData.name,
         class: playerData.class,
-        token: playerData.token,
+        role: playerData.role,
+        token: getTokenType(playerData.class),
         alt: playerData.alt,
+        altClass: playerData.altClass,
+        raid: null,
         set: {
           head: null,
           shoulders: "NORMAL",
@@ -17,6 +48,7 @@ export const createPlayer = async (playerData: any) => {
           hands: "HEROIC",
           legs: "HEROIC",
         },
+        lastModified: isoDate,
       }),
     });
 
@@ -32,14 +64,14 @@ export const createPlayer = async (playerData: any) => {
 };
 
 //TODO
-export const updatePlayer = async (newBeuteu: any) => {
+export const updatePlayer = async (newBeuteu: any, lastModified: any) => {
   try {
     const response = await fetch("/api/updatePlayer", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ newBeuteu }), // Send the new name in the request body
+      body: JSON.stringify({ newBeuteu, lastModified }), // Send the new name in the request body
     });
 
     if (response.ok) {

@@ -3,7 +3,10 @@ import { connectToDatabase } from "../../lib/mongodbjs";
 
 
 export default async function handler(req, res) {
+
+
   if (req.method === "POST") {
+
     try {
       const { database } = await connectToDatabase();
       const collection = database.collection(process.env.NEXT_ATLAS_COLLECTION);

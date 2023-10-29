@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     const { database } = await connectToDatabase();
     const collection = database.collection(process.env.NEXT_ATLAS_COLLECTION);
 
-    const { newBeuteu } = req.body; // Extract the new name from the request body
+    const { newBeuteu, lastModify } = req.body; // Extract the new name from the request body
 
     // Your logic to find the player you want to update (e.g., by player ID)
     // Update the player's name
@@ -16,7 +16,7 @@ export default async function handler(req, res) {
 
     // Define the update operation
     const updateOperation = {
-      $set: { beuteu: newBeuteu },
+      $set: { beuteu: newBeuteu, lastModify: lastModify },
     };
 
     // Update the player's name

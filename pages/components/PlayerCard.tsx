@@ -1,4 +1,5 @@
 import styles from "./PlayerCard.module.css";
+import { getBorderColor, getClassColor } from "../../utils/colors";
 
 function PlayerCard({ players }: any) {
   const getSetItemClassName = (value: string) => {
@@ -20,12 +21,19 @@ function PlayerCard({ players }: any) {
       <div className={styles.card}>
         {players && Array.isArray(players) ? (
           players.map((player: any) => (
-            <div key={player._id} className={styles.carddata}>
-              <p>Name: {player.name}</p>
-              <p>Class: {player.class}</p>
-              <p>token: {player.token}</p>
+            <div
+              key={player._id}
+              className={styles.carddata}
+              style={{
+                borderTop: "4px solid " + getBorderColor(player.class),
+              }}
+            >
+              <p className={getClassColor(player.class)}>{player.name}</p>
+              {/* <p>{player.class}</p> */}
+              <p>{player.token}</p>
+              {/* <p>{player.lastModified}</p> */}
               <div>
-                <p>Set:</p>
+                <p></p>
                 <ul>
                   {Object.keys(player.set).map((setItem) => (
                     <li

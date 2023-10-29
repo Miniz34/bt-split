@@ -1,0 +1,13 @@
+.raidscontainer {
+  position: fixed;
+  right: 0px;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: green;
+  width: 25%;
+  min-height: 100vh;
+  border: solid red 2px;
+  margin: none;
+}

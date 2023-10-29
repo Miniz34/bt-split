@@ -12,41 +12,30 @@ function Raids({ compo }: any) {
   //   return [];
   // });
   // console.log("names liste :", names);
-  console.log(raidUn);
 
   const raidOne: any = [];
 
   if (compo) {
     compo.filter((char: any) => {
-      console.log(char);
       if (char.main.raid === 1) {
         raidOne.push(char.main);
-        console.log("test here", char.main);
       } else if (char.alt.raid === 1) {
         raidOne.push(char.alt);
-        console.log("test here", char.main);
       }
     });
   }
-
-  console.log(raidOne);
 
   const raidTwo: any[] = [];
 
   if (compo) {
     compo.filter((char: any) => {
-      console.log(char);
       if (char.main.raid === 2) {
         raidTwo.push(char.main);
-        console.log("test here", char.main);
       } else if (char.alt.raid === 2) {
         raidTwo.push(char.alt);
-        console.log("test here", char.main);
       }
     });
   }
-
-  console.log(raidOne);
 
   return (
     <>

@@ -18,11 +18,11 @@ export default async function handler(req, res) {
     const query = { _id: playerIdObject };
 
     // Log the query and update operation for debugging
-    console.log("Query:", query);
+    // console.log("Query:", query);
     const updateOperation = {
       $set: { "main.raid": raidOneValue, "alt.raid": raidTwoValue },
     };
-    console.log("Update Operation:", updateOperation);
+    // console.log("Update Operation:", updateOperation);
 
     // Update the player's raid values
     const result = await collection.updateOne(query, updateOperation);

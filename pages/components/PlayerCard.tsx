@@ -17,6 +17,8 @@ function PlayerCard({ players }: any) {
     }
   };
 
+  console.log("Received players data:", players);
+
   async function updateRaidForPlayer(
     playerId: any,
     raidOneValue: number,
@@ -53,8 +55,9 @@ function PlayerCard({ players }: any) {
               <p>{player.main.token}</p>
               <p className={getClassColor(player.alt.Class)}>
                 {player.alt.name}
-                {player.alt.class}
               </p>
+              <p> {player.alt.Class}</p>
+              <p>{player.main.role}</p>
 
               {/* <p>{player.lastModified}</p> */}
               <div>

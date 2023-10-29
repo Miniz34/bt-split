@@ -14,10 +14,22 @@ type ConnectionStatus = {
 
 interface Player {
   _id: string;
-  name: string;
-  class: string;
+  main: {
+    role: string;
+    name: string;
+    class: string;
+    token: string;
+    raid: number;
+  };
+  alt: {
+    role: string;
+    name: string;
+    class: string;
+    raid: number;
+  };
+
   token: string;
-  beuteu: string;
+  lastModified: string;
 }
 
 export const getServerSideProps: GetServerSideProps<
@@ -41,6 +53,8 @@ export default function Home({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const [players, setPlayers] = useState<Player[]>([]);
   const [lastModified, setLastModified] = useState(""); // Initialize with an empty string
+  const [sortedData, setSortedData] = useState<Player[]>([]); // To store the current sorted data
+  const [sortByToken, setSortByToken] = useState(false); // To indicate whether to sort by token
 
   useEffect(() => {
     (async () => {
@@ -53,8 +67,6 @@ export default function Home({
       if (lastUser) {
         newUserId = lastUser.playerId + 1;
       }
-
-      console.log("last user here", lastUser);
 
       if (results.lastModified !== lastModified) {
         setPlayers(results);
@@ -77,6 +89,19 @@ export default function Home({
     setShowModal(true);
   };
 
+  const toggleSortPlayers = () => {
+    setSortByToken((prevSortByToken) => !prevSortByToken);
+    setSortedData((prevSortedData) => {
+      if (sortByToken) {
+        // Sort by token
+        return sortedPlayersByToken;
+      } else {
+        // Sort by role (default)
+        return sortedPlayers;
+      }
+    });
+  };
+
   //TODO handle any
   const handleSavePlayer = (playerData: any) => {
     // Handle saving player data (e.g., send it to your API)
@@ -87,6 +112,50 @@ export default function Home({
 
   console.log(players);
 
+  const sortedPlayers = [...players].sort((a, b) => {
+    const roleOrder: { [key: string]: number } = {
+      TANK: 1,
+      HEALER: 2,
+      RANGED_DPS: 3,
+      MELEE_DPS: 4,
+    };
+    return roleOrder[a.main.role] - roleOrder[b.main.role];
+  });
+  console.log(sortedPlayers);
+
+  const groupedPlayers: Record<string, Player[]> = {};
+  sortedPlayers.forEach((player) => {
+    const { role } = player.main;
+    if (!groupedPlayers[role]) {
+      groupedPlayers[role] = [];
+    }
+    groupedPlayers[role].push(player);
+  });
+
+  console.log(groupedPlayers);
+
+  const sortedPlayersByToken = [...players].sort((a, b) => {
+    const tokenOrder: { [key: string]: number } = {
+      Mystic: 1,
+      Zenith: 2,
+      Dreadful: 3,
+      Venerated: 4,
+    };
+    return tokenOrder[a.main.token] - tokenOrder[b.main.token];
+  });
+  console.log(sortedPlayers);
+
+  const groupedPlayersToken: Record<string, Player[]> = {};
+  sortedPlayersByToken.forEach((player) => {
+    const { token } = player.main;
+    if (!groupedPlayersToken[token]) {
+      groupedPlayersToken[token] = [];
+    }
+    groupedPlayersToken[token].push(player);
+  });
+
+  console.log("SORT BY TOKEN HERE", groupedPlayersToken);
+
   return (
     <>
       <div className="container">
@@ -96,7 +165,21 @@ export default function Home({
         </Head>
         <main>
           <h1>RANDOM NOUVEAU TEXT</h1>
-          <PlayerCard players={players} />
+          <button onClick={toggleSortPlayers}>
+            Sort by {sortByToken ? "Role" : "Token"}
+          </button>
+          <div className="cards-container">
+            {Object.entries(
+              sortByToken ? groupedPlayersToken : groupedPlayers
+            ).map(([role, players]) => (
+              <div key={role} className="role-section">
+                <div className="player-cards">
+                  <PlayerCard key={role} players={players} />
+                </div>
+              </div>
+            ))}
+          </div>
+          {/* <PlayerCard players={players} /> */}
 
           <button
             onClick={(e) => {

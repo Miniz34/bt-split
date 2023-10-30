@@ -7,29 +7,26 @@ export default async function handler(req, res) {
     const { database } = await connectToDatabase();
     const collection = database.collection(process.env.NEXT_ATLAS_COLLECTION);
 
-    const { playerId, raidOneValue, raidTwoValue } = req.body; // Extract playerId, raid values from the request body
 
     // Log the received data for debugging
-    console.log("Received data - playerId:", playerId, "raidOneValue:", raidOneValue, "raidTwoValue:", raidTwoValue);
 
     // Define the query to find the player by _id
-    const playerIdObject = ObjectId(playerId);
 
-    const query = { _id: playerIdObject };
+    const query = {}; // Empty query matches all documents
 
     // Log the query and update operation for debugging
     // console.log("Query:", query);
     const updateOperation = {
-      $set: { "main.raid": raidOneValue, "alt.raid": raidTwoValue },
+      $set: { "main.raid": 1, "alt.raid": 2 },
     };
     // console.log("Update Operation:", updateOperation);
 
     // Update the player's raid values
-    const result = await collection.updateOne(query, updateOperation);
+    const result = await collection.updateMany(query, updateOperation);
 
     // Log the result for debugging
 
-    res.status(200).json({ message: 'Raid Updated' });
+    res.status(200).json({ message: 'Raid Deleted' });
   } catch (error) {
     console.error('Error setting raid', error);
     res.status(500).json({ message: 'Error updating raid' });

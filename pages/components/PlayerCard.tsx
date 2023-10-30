@@ -23,7 +23,15 @@ import { PiPantsFill } from "react-icons/pi";
 
 import SetModal from "./SetModal";
 
-function PlayerCard({ players, updateRaidForPlayer }: any) {
+function PlayerCard({
+  players,
+  updateRaidForPlayer,
+  showModal,
+  displayModal,
+  setDisplayModal,
+  handleCloseModal,
+  handleClickModal,
+}: any) {
   const getSetItemClassName = (value: string) => {
     if (value === null) {
       return styles.black;
@@ -51,10 +59,7 @@ function PlayerCard({ players, updateRaidForPlayer }: any) {
       return <PiPantsFill />;
     }
     // You can return another icon (e.g., a default icon) for other values
-    return <FaBeer />;
   };
-
-  console.log("Received players data:", players);
 
   // async function updateRaidForPlayer(
   //   playerId: any,
@@ -73,25 +78,25 @@ function PlayerCard({ players, updateRaidForPlayer }: any) {
   //   }
   // }
 
-  const [displayModal, setDisplayModal] = useState(false);
+  // const [displayModal, setDisplayModal] = useState(false);
   const [selectedPlayer, setSelectedPlayer] = useState(null);
   const [selectedItem, setSelectedItem] = useState(null);
 
-  const showModal = (player: any, item: any) => {
-    setSelectedPlayer(player);
-    setSelectedItem(item);
-    setDisplayModal(true);
-    console.log("modal opened");
-  };
+  // const showModal = (player: any, item: any) => {
+  //   setSelectedPlayer(player);
+  //   setSelectedItem(item);
+  //   setDisplayModal(true);
+  //   console.log("modal opened");
+  // };
 
-  const handleValueClick = (value: any) => {
-    // Handle the clicked value here, for example, log it
-    console.log("Clicked value: ", value);
-  };
+  // const handleValueClick = (value: any) => {
+  //   // Handle the clicked value here, for example, log it
+  //   console.log("Clicked value: ", value);
+  // };
 
-  const handleCloseModal = () => {
-    setDisplayModal(false);
-  };
+  // const handleCloseModal = () => {
+  //   setDisplayModal(false);
+  // };
 
   return (
     <>
@@ -187,10 +192,10 @@ function PlayerCard({ players, updateRaidForPlayer }: any) {
       </div>
       {displayModal ? (
         <SetModal
-          onValueClick={handleValueClick}
           player={selectedPlayer}
           item={selectedItem}
           handleCloseModal={handleCloseModal}
+          handleClickModal={handleClickModal}
         />
       ) : null}
     </>

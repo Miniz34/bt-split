@@ -9,6 +9,7 @@ import App from "./app";
 import Raids from "./components/Raids";
 import styles from "./index.module.css";
 import { setRaidOne } from "../utils//managePlayer"; // Replace with your API client
+import { updateSet, clearRaid } from "../utils/managePlayer";
 
 type ConnectionStatus = {
   isConnected: boolean;
@@ -58,7 +59,8 @@ export default function Home({
   const [sortedData, setSortedData] = useState<Player[]>([]); // To store the current sorted data
   const [sortByToken, setSortByToken] = useState(false); // To indicate whether to sort by token
 
-  const [displayModal, setDisplayModal] = useState(false);
+  // const [displayModal, setDisplayModal] = useState(false);
+
   async function updateRaidForPlayer(
     playerId: any,
     raidOneValue: number,
@@ -76,6 +78,7 @@ export default function Home({
               return {
                 ...player,
                 main: { ...player.main, raid: raidOneValue },
+                alt: { ...player.alt, raid: raidTwoValue },
               };
             }
             return player;
@@ -110,21 +113,9 @@ export default function Home({
     })();
   }, []);
 
-  console.log("RESULTS HERE", players);
-
   const [newBeuteu, setNewBeuteu] = useState("");
   const currentDate = new Date();
   const isoDate = currentDate.toISOString();
-
-  const [showModal, setShowModal] = useState(true);
-
-  const openModal = () => {
-    setShowModal(true);
-  };
-
-  const closeModal = () => {
-    setShowModal(true);
-  };
 
   const toggleSortPlayers = () => {
     setSortByToken((prevSortByToken) => !prevSortByToken);
@@ -142,12 +133,8 @@ export default function Home({
   //TODO handle any
   const handleSavePlayer = (playerData: any) => {
     // Handle saving player data (e.g., send it to your API)
-    console.log("Saving player:", playerData);
     createPlayer(playerData); // Call the createPlayer function with the player data
-    closeModal();
   };
-
-  console.log(players);
 
   const sortedPlayers = [...players].sort((a, b) => {
     const roleOrder: { [key: string]: number } = {
@@ -158,7 +145,6 @@ export default function Home({
     };
     return roleOrder[a.main.role] - roleOrder[b.main.role];
   });
-  console.log(sortedPlayers);
 
   const groupedPlayers: Record<string, Player[]> = {};
   sortedPlayers.forEach((player) => {
@@ -169,8 +155,6 @@ export default function Home({
     groupedPlayers[role].push(player);
   });
 
-  console.log(groupedPlayers);
-
   const sortedPlayersByToken = [...players].sort((a, b) => {
     const tokenOrder: { [key: string]: number } = {
       Mystic: 1,
@@ -180,7 +164,6 @@ export default function Home({
     };
     return tokenOrder[a.main.token] - tokenOrder[b.main.token];
   });
-  console.log(sortedPlayers);
 
   const groupedPlayersToken: Record<string, Player[]> = {};
   sortedPlayersByToken.forEach((player) => {
@@ -191,8 +174,78 @@ export default function Home({
     groupedPlayersToken[token].push(player);
   });
 
-  console.log("SORT BY TOKEN HERE", groupedPlayersToken);
+  const [displayModal, setDisplayModal] = useState(false);
 
+  const [selectedPlayer, setSelectedPlayer] = useState(null);
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  const showModal = (player: any, item: any) => {
+    setSelectedPlayer(player);
+    setSelectedItem(item);
+    setDisplayModal(true);
+    console.log("modal opened");
+  };
+
+  const handleValueClick = (value: any) => {
+    // Handle the clicked value here, for example, log it
+    console.log("Clicked value: ", value);
+  };
+
+  const handleCloseModal = () => {
+    setDisplayModal(false);
+  };
+
+  const handleClickModal = async (value: any) => {
+    const currentDate = new Date();
+    const isoDate = currentDate.toISOString();
+
+    console.log(selectedItem);
+    console.log(selectedPlayer);
+
+    // Create an updated set object based on the selected item and value
+    const updatedSet = {
+      // @ts-ignore
+      ...selectedPlayer.set,
+      // @ts-ignore
+
+      [selectedItem]: value, // Use the selectedItem as a dynamic key
+    };
+
+    // Update the player's data
+    const updatedPlayer = {
+      // @ts-ignore
+
+      ...selectedPlayer,
+      set: updatedSet,
+    };
+
+    // Update the state with the updated player
+    setPlayers((prevPlayers) => {
+      return prevPlayers.map((player) => {
+        // @ts-ignore
+        if (player._id === selectedPlayer._id) {
+          return updatedPlayer;
+        }
+        return player;
+      });
+    });
+
+    try {
+      // Call the function to update your data on the server
+      // @ts-ignore
+      await updateSet(selectedPlayer._id, selectedItem, value, isoDate);
+
+      // Close the modal after the state update
+      handleCloseModal();
+    } catch (error) {
+      console.error("Error updating set:", error);
+
+      // Handle the error here, for example, show an error message
+    }
+  };
+
+  console.log(selectedItem);
+  console.log(selectedPlayer);
   return (
     <>
       <div className="container">
@@ -210,7 +263,9 @@ export default function Home({
               >
                 Sort by {sortByToken ? "Role" : "Token"}
               </button>
-              <button className={styles.buttonheader}>Nuke</button>
+              <button className={styles.buttonheader} onClick={clearRaid}>
+                Nuke
+              </button>
             </div>
           </div>
 
@@ -226,6 +281,9 @@ export default function Home({
                     displayModal={displayModal}
                     setDisplayModal={setDisplayModal}
                     updateRaidForPlayer={updateRaidForPlayer}
+                    showModal={showModal}
+                    handleCloseModal={handleCloseModal}
+                    handleClickModal={handleClickModal}
                   />
                 </div>
               </div>
@@ -240,13 +298,14 @@ export default function Home({
           >
             create player
           </button>
-          {showModal ? (
-            <Modal
-              show={showModal}
-              handleClose={closeModal}
-              handleSave={handleSavePlayer}
-            />
-          ) : null}
+
+          <Modal
+            // @ts-ignore
+            show={showModal}
+            // @ts-ignore
+            handleClose={showModal}
+            handleSave={handleSavePlayer}
+          />
 
           <div>
             <input
@@ -265,9 +324,7 @@ export default function Home({
         </main>
         <Raids compo={players} />
 
-        <div>
-          <button onClick={openModal}>open Modal</button>
-        </div>
+        <div></div>
 
         <style jsx>{`
           .container {

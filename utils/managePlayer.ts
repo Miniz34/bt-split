@@ -194,3 +194,18 @@ export async function updateSet(
     return { ok: false };
   }
 }
+
+export async function clearRaid() {
+  const response = await fetch("/api/clearRaid", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (response.ok) {
+    console.log("Set updated successfully");
+  } else {
+    console.error("Failed to update set");
+    return { ok: false };
+  }
+}

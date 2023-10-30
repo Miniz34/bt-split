@@ -24,7 +24,6 @@ function Raids({ compo }: any) {
     lastModified: string;
   }
 
-  console.log("compo ici", compo);
   const raidUn = compo ? compo.filter((e: any) => e.raid === 2) : [];
   // const names = raidUn.flatMap((e: any) => {
   //   if (e.name) {
@@ -60,8 +59,6 @@ function Raids({ compo }: any) {
     });
   }
 
-  console.log("raid two here", raidTwo);
-
   const sortedPlayersRaidOne = [...raidOne].sort((a, b) => {
     const roleOrder: { [key: string]: number } = {
       TANK: 1,
@@ -71,7 +68,6 @@ function Raids({ compo }: any) {
     };
     return roleOrder[a.role] - roleOrder[b.role];
   });
-  console.log(sortedPlayersRaidOne);
 
   const groupedPlayersRaidOne: Record<string, Player[]> = {};
   sortedPlayersRaidOne.forEach((player) => {
@@ -82,8 +78,6 @@ function Raids({ compo }: any) {
     groupedPlayersRaidOne[role].push(player);
   });
 
-  console.log("raid check", groupedPlayersRaidOne);
-
   const sortedPlayersRaidTwo = [...raidTwo].sort((a, b) => {
     const roleOrder: { [key: string]: number } = {
       TANK: 1,
@@ -93,7 +87,6 @@ function Raids({ compo }: any) {
     };
     return roleOrder[a.role] - roleOrder[b.role];
   });
-  console.log(sortedPlayersRaidTwo);
 
   const groupedPlayersRaidTwo: Record<string, Player[]> = {};
   sortedPlayersRaidTwo.forEach((player) => {
@@ -103,8 +96,6 @@ function Raids({ compo }: any) {
     }
     groupedPlayersRaidTwo[role].push(player);
   });
-
-  console.log("raid check", groupedPlayersRaidTwo);
 
   const requiredPlayerClasses = [
     "Priest",

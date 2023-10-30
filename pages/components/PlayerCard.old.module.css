@@ -1,6 +1,6 @@
 .card {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: wrap;
   justify-content: left;
   margin-bottom: 25px;
@@ -9,51 +9,34 @@
 }
 
 .carddata {
-  display: flex;
-  flex-direction: row;
   background-color: #1e1e1e;
-  height: 65px;
-  /* width: 200px; */
+  width: 200px;
 }
 
 .mainchar {
   font-size: 24px;
   font-weight: 700;
-  height: 20px;
-  margin-top: 0;
-  margin-bottom: 0px;
-}
-
-.altchar {
-  margin-left: 5px;
 }
 
 .textcard {
   display: flex;
-  width: 300px;
-  border-right: solid black 2px;
-  flex-direction: row;
+  flex-direction: column;
   margin-left: 10px;
   margin-right: 10px;
 }
 
 .textcardmain {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  align-items: start;
-  margin-top: 0;
-  margin-bottom: 0px;
-  width: 180px;
-  border-right: solid black 2px;
+  height: 35px;
 }
 
 .buttons {
   display: flex;
   justify-content: space-around;
   margin-bottom: 5px;
-  margin-left: 15px;
 }
 
 .button {

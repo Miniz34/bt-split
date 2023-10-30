@@ -277,7 +277,7 @@ export default function Home({
             {Object.entries(
               sortByToken ? groupedPlayersToken : groupedPlayers
             ).map(([role, players]) => (
-              <div key={role} className="role-section">
+              <div key={role} className={styles.rolesection}>
                 <div className="player-cards">
                   <PlayerCard
                     key={role}

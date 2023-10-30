@@ -123,12 +123,36 @@ function PlayerCard({
                   {/* <p>{player.class}</p> */}
                   <p>{player.main.token}</p>
                 </div>
-                <p className={getClassColor(player.alt.class)}>
+                <p
+                  className={`${getClassColor(player.alt.class)} ${
+                    styles.altchar
+                  }`}
+                >
                   {player.alt.name}
                 </p>
               </div>
 
               <div>
+                <ul className={styles.list}>
+                  <div style={{ display: "flex", flexDirection: "row" }}>
+                    {Object.keys(player.set).map((setItem, index) => (
+                      <li
+                        key={setItem}
+                        className={`${getSetItemClassName(
+                          player.set[setItem]
+                        )} ${styles.gear}`}
+                        onClick={() =>
+                          showModal(player, setItem, player.set[setItem])
+                        }
+                      >
+                        {renderEquipmentIcon(setItem)}
+                      </li>
+                    ))}
+                  </div>
+                </ul>
+              </div>
+
+              {/* <div>
                 <ul className={styles.list}>
                   <div style={{ display: "flex", flexDirection: "column" }}>
                     {Object.keys(player.set).map((setItem, index) =>
@@ -165,7 +189,7 @@ function PlayerCard({
                     )}
                   </div>
                 </ul>
-              </div>
+              </div> */}
               <div className={styles.buttons}>
                 <button
                   className={`${styles.button} ${

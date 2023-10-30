@@ -5,7 +5,7 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-120%, -50%);
   background-color: rgba(255, 255, 255, 0.377);
   border: solid white 1px;
   width: 250px;
@@ -21,7 +21,9 @@
   justify-content: space-between;
   align-items: flex-start; /* Align items at the top */
   width: 100%;
-  padding: 16px;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 16px;
   color: white;
   background-color: #1e1e1e; /* Example background color */
 }
@@ -48,6 +50,7 @@
   font-size: 24px;
   cursor: pointer;
   margin-right: 16px;
+  margin-top: 8px;
 }
 
 /* Add styles for your title */

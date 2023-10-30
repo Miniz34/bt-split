@@ -101,7 +101,7 @@ function PlayerCard({
 
   return (
     <>
-      <div className={styles.card}>
+      <div className={`${styles.card} ${displayModal ? styles.disable : ""}`}>
         {players && Array.isArray(players) ? (
           players.map((player: any) => (
             <div
@@ -195,6 +195,7 @@ function PlayerCard({
           <p>Invalid players data</p>
         )}
       </div>
+
       {displayModal ? (
         <SetModal
           handleCloseModal={handleCloseModal}

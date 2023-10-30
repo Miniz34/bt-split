@@ -178,11 +178,13 @@ export default function Home({
 
   const [selectedPlayer, setSelectedPlayer] = useState(null);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedValue, setSelectedValue] = useState(null);
 
-  const showModal = (player: any, item: any) => {
+  const showModal = (player: any, item: any, setItem: any) => {
     setSelectedPlayer(player);
     setSelectedItem(item);
     setDisplayModal(true);
+    setSelectedValue(setItem);
     console.log("modal opened");
   };
 
@@ -246,6 +248,7 @@ export default function Home({
 
   console.log(selectedItem);
   console.log(selectedPlayer);
+  console.log(selectedValue);
   return (
     <>
       <div className="container">
@@ -263,6 +266,7 @@ export default function Home({
               >
                 Sort by {sortByToken ? "Role" : "Token"}
               </button>
+              <button className={styles.buttonheader}>Add Player</button>
               <button className={styles.buttonheader} onClick={clearRaid}>
                 Nuke
               </button>
@@ -284,6 +288,9 @@ export default function Home({
                     showModal={showModal}
                     handleCloseModal={handleCloseModal}
                     handleClickModal={handleClickModal}
+                    selectedValue={selectedValue}
+                    selectedItem={selectedItem}
+                    selectedPlayer={selectedPlayer}
                   />
                 </div>
               </div>

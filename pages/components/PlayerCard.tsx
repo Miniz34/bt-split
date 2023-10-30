@@ -31,6 +31,9 @@ function PlayerCard({
   setDisplayModal,
   handleCloseModal,
   handleClickModal,
+  selectedValue,
+  selectedItem,
+  selectedPlayer,
 }: any) {
   const getSetItemClassName = (value: string) => {
     if (value === null) {
@@ -79,8 +82,6 @@ function PlayerCard({
   // }
 
   // const [displayModal, setDisplayModal] = useState(false);
-  const [selectedPlayer, setSelectedPlayer] = useState(null);
-  const [selectedItem, setSelectedItem] = useState(null);
 
   // const showModal = (player: any, item: any) => {
   //   setSelectedPlayer(player);
@@ -137,7 +138,9 @@ function PlayerCard({
                           className={`${getSetItemClassName(
                             player.set[setItem]
                           )} ${styles.gear}`}
-                          onClick={() => showModal(player, setItem)}
+                          onClick={() =>
+                            showModal(player, setItem, player.set[setItem])
+                          }
                         >
                           {renderEquipmentIcon(setItem)}
                         </li>
@@ -152,7 +155,9 @@ function PlayerCard({
                           className={`${getSetItemClassName(
                             player.set[setItem]
                           )} ${styles.gear}`}
-                          onClick={() => showModal(player, setItem)}
+                          onClick={() =>
+                            showModal(player, setItem, player.set[setItem])
+                          }
                         >
                           {renderEquipmentIcon(setItem)}
                         </li>
@@ -192,10 +197,11 @@ function PlayerCard({
       </div>
       {displayModal ? (
         <SetModal
-          player={selectedPlayer}
-          item={selectedItem}
           handleCloseModal={handleCloseModal}
           handleClickModal={handleClickModal}
+          selectedValue={selectedValue}
+          selectedItem={selectedItem}
+          selectedPlayer={selectedPlayer}
         />
       ) : null}
     </>

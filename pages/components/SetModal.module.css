@@ -1,9 +1,63 @@
 .setmodal {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center horizontally */
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: orange;
-  border: solid green 2px;
+  background-color: rgba(255, 255, 255, 0.377);
+  border: solid white 1px;
   width: 250px;
+}
+
+.selected {
+  text-decoration: underline;
+  font-weight: 800;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Align items at the top */
+  width: 100%;
+  padding: 16px;
+  color: white;
+  background-color: #1e1e1e; /* Example background color */
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center horizontally */
+  padding: 16px;
+}
+
+.modalselect {
+  cursor: pointer;
+}
+
+/* Add styles for your close button and title if needed */
+.closeButton {
+  background: none;
+  background-color: #f44336;
+  color: white;
+  width: 35px;
+  height: 35px;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  margin-right: 16px;
+}
+
+/* Add styles for your title */
+
+.titlemodal {
+  font-size: 24px;
+  margin: 0;
+}
+
+.titlepartmodal {
+  font-size: 18px;
+  margin: 0;
 }

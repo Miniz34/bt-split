@@ -19,8 +19,11 @@
 }
 
 .buttonheader {
-  background-color: red;
+  background-color: #f44336;
+  cursor: pointer;
+  border-radius: 10px;
   color: white;
-  width: 75px;
+  font-weight: 700;
+  width: 120px;
   height: 45px;
 }

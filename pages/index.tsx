@@ -57,7 +57,7 @@ export default function Home({
   const [players, setPlayers] = useState<Player[]>([]);
   const [lastModified, setLastModified] = useState(""); // Initialize with an empty string
   const [sortedData, setSortedData] = useState<Player[]>([]); // To store the current sorted data
-  const [sortByToken, setSortByToken] = useState(false); // To indicate whether to sort by token
+  const [sortByToken, setSortByToken] = useState(true); // To indicate whether to sort by token
 
   // const [displayModal, setDisplayModal] = useState(false);
 
@@ -246,9 +246,7 @@ export default function Home({
     }
   };
 
-  console.log(selectedItem);
-  console.log(selectedPlayer);
-  console.log(selectedValue);
+  console.log(players);
   return (
     <>
       <div className="container">
@@ -340,8 +338,8 @@ export default function Home({
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
-            width: 75%;
+            align-items: start;
+            width: 40%;
           }
 
           main {

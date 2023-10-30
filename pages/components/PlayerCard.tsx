@@ -49,6 +49,8 @@ function PlayerCard({
     }
   };
 
+  console.log(players);
+
   const renderEquipmentIcon = (value: string) => {
     if (value === "head") {
       return <GiCenturionHelmet />;
@@ -99,6 +101,25 @@ function PlayerCard({
   //   setDisplayModal(false);
   // };
 
+  function countSetValues(playerData: any) {
+    if (playerData && playerData.set) {
+      const set = playerData.set;
+      let count = 0;
+
+      for (const key in set) {
+        const value = set[key];
+
+        if (value !== null && value !== "NULL") {
+          count++;
+        }
+      }
+
+      return count;
+    }
+
+    return 0; // Return 0 if playerData or set is not defined
+  }
+
   return (
     <>
       <div className={`${styles.card} ${displayModal ? styles.disable : ""}`}>
@@ -121,7 +142,9 @@ function PlayerCard({
                     {player.main.name}
                   </h3>
                   {/* <p>{player.class}</p> */}
-                  <p>{player.main.token}</p>
+                  <p>
+                    {player.main.token} {countSetValues(player)}p
+                  </p>
                 </div>
                 <p
                   className={`${getClassColor(player.alt.class)} ${

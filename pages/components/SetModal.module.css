@@ -6,9 +6,10 @@
   top: 50%;
   left: 50%;
   transform: translate(-120%, -50%);
-  background-color: rgba(255, 255, 255, 0.377);
+  background-color: rgb(212, 212, 212);
   border: solid white 1px;
   width: 250px;
+  opacity: 2;
 }
 
 .selected {

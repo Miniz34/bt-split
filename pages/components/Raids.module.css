@@ -12,9 +12,17 @@
   margin: none;
 }
 
+.singleraid {
+  width: 50%;
+  padding-right: 10px;
+  padding-left: 10px;
+  border-right: solid black 2px;
+}
+
 .raiddata {
+  margin-top: 40px;
   padding-bottom: 10px;
-  border-bottom: solid black 2px;
+  border: solid white 1px;
 }
 
 .raidtitle {
@@ -23,7 +31,6 @@
   padding-bottom: 10px;
 
   justify-content: center;
-  border-bottom: solid black 2px;
 }
 .missingbuff {
   margin-left: 5px;
@@ -34,6 +41,13 @@
   gap: 10px;
 }
 
+.rolecontainer {
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .rolemain {
   margin-left: 5px;
 }
@@ -42,7 +56,10 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 15px;
+  justify-content: start;
+  gap: 10px;
+  margin-bottom: 40px;
+  line-height: 1;
 }
 
 .tokencount {
@@ -50,4 +67,32 @@
   gap: 25px;
   flex-wrap: wrap;
   margin-left: 5px;
+}
+
+.playerinraid {
+  margin: 0;
+}
+
+.nobuff {
+  color: red;
+}
+
+.allbuffs {
+  color: green;
+}
+
+.Mystic {
+  order: 1;
+}
+
+.Zenith {
+  order: 2;
+}
+
+.Dreadful {
+  order: 3;
+}
+
+.Venerated {
+  order: 4;
 }

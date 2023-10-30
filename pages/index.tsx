@@ -295,24 +295,24 @@ export default function Home({
             ))}
           </div>
           {/* <PlayerCard players={players} /> */}
-
+          {/* 
           <button
             onClick={(e) => {
               createPlayer;
             }}
           >
             create player
-          </button>
-
+          </button> */}
+          {/* 
           <Modal
             // @ts-ignore
             show={showModal}
             // @ts-ignore
             handleClose={showModal}
             handleSave={handleSavePlayer}
-          />
+          /> */}
 
-          <div>
+          {/* <div>
             <input
               type="text"
               value={newBeuteu}
@@ -325,7 +325,7 @@ export default function Home({
             >
               Update Beuteu
             </button>
-          </div>
+          </div> */}
         </main>
         <Raids compo={players} />
 
@@ -338,8 +338,9 @@ export default function Home({
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: start;
+            align-items: center;
             width: 40%;
+            margin-left: 5%;
           }
 
           main {

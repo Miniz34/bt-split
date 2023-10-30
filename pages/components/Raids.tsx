@@ -473,34 +473,56 @@ function Raids({ compo }: any) {
     return missingParts;
   }
 
-  const getMissingParts = (max: number, owned: number) => {
-    return max - owned;
-  };
+  console.log(tokenPartMaxRaidOne);
 
   return (
     <>
       <div className={styles.raidscontainer}>
-        <div>
+        <div className={styles.singleraid}>
           <h2 className={styles.raidtitle}>raid 1 ({mainsRaidOne} main)</h2>
-
-          {Object.keys(groupedPlayersRaidOne).map((role) => (
-            <div key={role} className={styles.rolemain}>
-              {/* <h3>
+          <div className={styles.rolecontainer}>
+            <div>
+              {Object.keys(groupedPlayersRaidOne).map((role) => (
+                <div key={role} className={styles.rolemain}>
+                  {/* <h3>
                 {role} ({groupedPlayersRaidOne[role].length})
               </h3> */}
-              <div className={styles.rolelist}>
-                {groupedPlayersRaidOne[role].map((player) => (
-                  <p key={player._id} className={getClassColor(player.class)}>
-                    {player.name}
-                  </p>
-                ))}
-              </div>
+                  <div className={styles.rolelist}>
+                    {groupedPlayersRaidOne[role].map((player) => (
+                      <p
+                        key={player._id}
+                        className={`${getClassColor(player.class)} ${
+                          styles.playerinraid
+                        }`}
+                      >
+                        {player.name}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
+
+            <div className={styles.missingbuff}>
+              {missingBuffsRaidOne.length > 0 ? (
+                <>
+                  {missingBuffsRaidOne.length > 0 && (
+                    <div className={styles.nobuff}>Missing Buffs:</div>
+                  )}
+                  <div className={styles.missingbufflist}>
+                    {missingBuffsRaidOne}
+                  </div>
+                </>
+              ) : (
+                <div className={styles.allbuffs}>GG full buff big damouge</div>
+              )}
+            </div>
+          </div>
           <div className={styles.raiddata}>
             <div className={styles.tokencount}>
               {Object.keys(tokenPartMaxRaidOne).map((token) => (
-                <div key={token}>
+                <div key={token} className={styles[token]}>
+                  <div className={styles.token}></div>
                   <h3>
                     {/*@ts-ignore*/}
                     {token} :{tokenCountsOne[token]}
@@ -522,40 +544,55 @@ function Raids({ compo }: any) {
             </div>
 
             {/* Display missing buffs */}
-            <div className={styles.missingbuff}>
-              {missingBuffsRaidOne.length > 0 && (
-                <div className="missing-buffs-label">Missing Buffs:</div>
-              )}{" "}
-              <div className={styles.missingbufflist}>
-                {missingBuffsRaidOne}
-              </div>
-            </div>
           </div>
         </div>
-        <div>
-          <h2 className={styles.raidtitle}>raid 1 ({mainsRaidTwo} main)</h2>
-
-          {Object.keys(groupedPlayersRaidTwo).map((role) => (
-            <div key={role} className={styles.rolemain}>
-              {/* <h3>
+        <div className={styles.singleraid}>
+          <h2 className={styles.raidtitle}>raid 2 ({mainsRaidTwo} main)</h2>
+          <div className={styles.rolecontainer}>
+            <div>
+              {Object.keys(groupedPlayersRaidTwo).map((role) => (
+                <div key={role} className={styles.rolemain}>
+                  {/* <h3>
                 {role} ({groupedPlayersRaidTwo[role].length})
               </h3> */}
-              <div className={styles.rolelist}>
-                {groupedPlayersRaidTwo[role].map((player) => (
-                  <p key={player._id} className={getClassColor(player.class)}>
-                    {player.name}
-                  </p>
-                ))}
-              </div>
+                  <div className={styles.rolelist}>
+                    {groupedPlayersRaidTwo[role].map((player) => (
+                      <p
+                        key={player._id}
+                        className={`${getClassColor(player.class)} ${
+                          styles.playerinraid
+                        }`}
+                      >
+                        {player.name}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
+
+            <div className={styles.missingbuff}>
+              {missingBuffsRaidTwo.length > 0 ? (
+                <>
+                  {missingBuffsRaidTwo.length > 0 && (
+                    <div className={styles.nobuff}>Missing Buffs:</div>
+                  )}
+                  <div className={styles.missingbufflist}>
+                    {missingBuffsRaidTwo}
+                  </div>
+                </>
+              ) : (
+                <div className={styles.allbuffs}>GG full buff big damouge</div>
+              )}
+            </div>
+          </div>
           <div className={styles.raiddata}>
             <div className={styles.tokencount}>
               {Object.keys(tokenPartMaxRaidTwo).map((token) => (
-                <div key={token}>
+                <div key={token} className={styles[token]}>
                   <h3>
                     {/*@ts-ignore*/}
-                    {token} : {tokenCountsTwo[token]}
+                    {token} :{tokenCountsTwo[token]}
                   </h3>
                   {Object.entries(
                     getMissingPartsForToken(
@@ -571,16 +608,6 @@ function Raids({ compo }: any) {
                   ))}
                 </div>
               ))}
-            </div>
-
-            {/* Display missing buffs */}
-            <div className={styles.missingbuff}>
-              {missingBuffsRaidTwo.length > 0 && (
-                <div className="missing-buffs-label">Missing Buffs:</div>
-              )}{" "}
-              <div className={styles.missingbufflist}>
-                {missingBuffsRaidTwo}
-              </div>
             </div>
           </div>
         </div>

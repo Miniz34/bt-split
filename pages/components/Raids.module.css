@@ -4,7 +4,7 @@
   right: 0px;
   top: 0;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-around;
   background-color: #1e1e1e;
   width: 40%;
@@ -12,17 +12,84 @@
   margin: none;
 }
 
+.singleraidscontainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: #1e1e1e;
+  margin: none;
+  height: 100%;
+}
+
+.raiddatacontainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.raidtokencontainer {
+  display: flex;
+}
+
+.raidbtncontainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.normalbutton {
+  color: black;
+  background-color: #b7e1cd;
+  cursor: pointer;
+  border-radius: 10px;
+  width: 90px;
+  height: 35px;
+}
+
+.heroicbutton {
+  color: black;
+  background-color: #ffe599;
+  cursor: pointer;
+  border-radius: 10px;
+  width: 90px;
+  height: 35px;
+}
+
+.mythicbutton {
+  color: white;
+  background-color: #e06666;
+  cursor: pointer;
+  border-radius: 10px;
+  width: 90px;
+  height: 35px;
+}
+
 .singleraid {
   width: 50%;
   padding-right: 10px;
   padding-left: 10px;
   border-right: solid black 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: space-around;
+  min-height: 100%;
+}
+
+.chosendifficulty {
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: -30px;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .raiddata {
   margin-top: 40px;
   padding-bottom: 10px;
   border: solid white 1px;
+  width: 50%;
+  min-height: 505px;
 }
 
 .raidtitle {
@@ -42,10 +109,10 @@
 }
 
 .rolecontainer {
-  height: 30%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .rolemain {

@@ -1,5 +1,6 @@
 import styles from "./Raids.module.css";
 import { getBorderColor, getClassColor } from "../../utils/colors";
+import { useState } from "react";
 
 import {
   GiCenturionHelmet,
@@ -45,6 +46,8 @@ function Raids({ compo }: any) {
 
   const raidOne: any = [];
   const raidOneToken: any = [];
+
+  const [difficultyToken, setDifficultyToken] = useState("NORMAL");
 
   // if (compo) {
   //   compo.filter((char: any) => {
@@ -340,13 +343,13 @@ function Raids({ compo }: any) {
     );
   });
 
-  const partCounts = {
-    chest: 0,
-    hands: 0,
-    head: 0,
-    legs: 0,
-    shoulders: 0,
-  };
+  // const partCounts = {
+  //   chest: 0,
+  //   hands: 0,
+  //   head: 0,
+  //   legs: 0,
+  //   shoulders: 0,
+  // };
 
   const tokenPartCountsRaidOne: { [key: string]: { [key: string]: number } } =
     {};
@@ -376,6 +379,182 @@ function Raids({ compo }: any) {
   });
 
   //Vérifier par difficulté : TokenparsCountsRaidOneMythic > foreach
+
+  const tokenPartCountsRaidOneNormal: {
+    [key: string]: { [key: string]: number };
+  } = {};
+
+  // Iterate through the raidOneToken data
+  raidOneToken.forEach((entry: any) => {
+    const { set, token } = entry;
+    // Check if the token is not null or "NULL"
+    if (token !== null && token !== "NULL") {
+      if (!tokenPartCountsRaidOneNormal[token]) {
+        tokenPartCountsRaidOneNormal[token] = {
+          chest: 0,
+          hands: 0,
+          head: 0,
+          legs: 0,
+          shoulders: 0,
+        };
+      }
+
+      // Iterate through the set object and increment the counts for each part per token
+      Object.entries(set).forEach(([part, value]) => {
+        if (value == "NORMAL" || value == "HEROIC" || value == "MYTHIC") {
+          tokenPartCountsRaidOneNormal[token][part] += 1;
+        }
+      });
+    }
+  });
+
+  const tokenPartCountsRaidOneHeroic: {
+    [key: string]: { [key: string]: number };
+  } = {};
+
+  // Iterate through the raidOneToken data
+  raidOneToken.forEach((entry: any) => {
+    const { set, token } = entry;
+    // Check if the token is not null or "NULL"
+    if (token !== null && token !== "NULL") {
+      if (!tokenPartCountsRaidOneHeroic[token]) {
+        tokenPartCountsRaidOneHeroic[token] = {
+          chest: 0,
+          hands: 0,
+          head: 0,
+          legs: 0,
+          shoulders: 0,
+        };
+      }
+
+      // Iterate through the set object and increment the counts for each part per token
+      Object.entries(set).forEach(([part, value]) => {
+        if (value === "HEROIC" || value === "MYTHIC") {
+          tokenPartCountsRaidOneHeroic[token][part] += 1;
+        }
+      });
+    }
+  });
+
+  const tokenPartCountsRaidOneMythic: {
+    [key: string]: { [key: string]: number };
+  } = {};
+
+  // Iterate through the raidOneToken data
+  raidOneToken.forEach((entry: any) => {
+    const { set, token } = entry;
+    // Check if the token is not null or "NULL"
+    if (token !== null && token !== "NULL") {
+      if (!tokenPartCountsRaidOneMythic[token]) {
+        tokenPartCountsRaidOneMythic[token] = {
+          chest: 0,
+          hands: 0,
+          head: 0,
+          legs: 0,
+          shoulders: 0,
+        };
+      }
+
+      // Iterate through the set object and increment the counts for each part per token
+      Object.entries(set).forEach(([part, value]) => {
+        if (value === "MYTHIC") {
+          tokenPartCountsRaidOneMythic[token][part] += 1;
+        }
+      });
+    }
+  });
+
+  const tokenPartCountsRaidTwoNormal: {
+    [key: string]: { [key: string]: number };
+  } = {};
+
+  // Iterate through the raidTwoToken data
+  raidTwoToken.forEach((entry: any) => {
+    const { set, token } = entry;
+    // Check if the token is not null or "NULL"
+    if (token !== null && token !== "NULL") {
+      if (!tokenPartCountsRaidTwoNormal[token]) {
+        tokenPartCountsRaidTwoNormal[token] = {
+          chest: 0,
+          hands: 0,
+          head: 0,
+          legs: 0,
+          shoulders: 0,
+        };
+      }
+
+      // Iterate through the set object and increment the counts for each part per token
+      Object.entries(set).forEach(([part, value]) => {
+        if (value == "NORMAL" || value === "HEROIC" || value === "MYTHIC") {
+          tokenPartCountsRaidTwoNormal[token][part] += 1;
+        }
+      });
+    }
+  });
+
+  const tokenPartCountsRaidTwoHeroic: {
+    [key: string]: { [key: string]: number };
+  } = {};
+
+  // Iterate through the raidTwoToken data
+  raidTwoToken.forEach((entry: any) => {
+    const { set, token } = entry;
+    // Check if the token is not null or "NULL"
+    if (token !== null && token !== "NULL") {
+      if (!tokenPartCountsRaidTwoHeroic[token]) {
+        tokenPartCountsRaidTwoHeroic[token] = {
+          chest: 0,
+          hands: 0,
+          head: 0,
+          legs: 0,
+          shoulders: 0,
+        };
+      }
+
+      // Iterate through the set object and increment the counts for each part per token
+      Object.entries(set).forEach(([part, value]) => {
+        if (value === "HEROIC" || value === "MYTHIC") {
+          tokenPartCountsRaidTwoHeroic[token][part] += 1;
+        }
+      });
+    }
+  });
+
+  const tokenPartCountsRaidTwoMythic: {
+    [key: string]: { [key: string]: number };
+  } = {};
+
+  // Iterate through the raidTwoToken data
+  raidTwoToken.forEach((entry: any) => {
+    const { set, token } = entry;
+    // Check if the token is not null or "NULL"
+    if (token !== null && token !== "NULL") {
+      if (!tokenPartCountsRaidTwoMythic[token]) {
+        tokenPartCountsRaidTwoMythic[token] = {
+          chest: 0,
+          hands: 0,
+          head: 0,
+          legs: 0,
+          shoulders: 0,
+        };
+      }
+
+      // Iterate through the set object and increment the counts for each part per token
+      Object.entries(set).forEach(([part, value]) => {
+        if (value === "MYTHIC") {
+          tokenPartCountsRaidTwoMythic[token][part] += 1;
+        }
+      });
+    }
+  });
+
+  console.log("verif overall token here", tokenPartCountsRaidOne);
+
+  console.log("verif NORMAL token here", tokenPartCountsRaidOneNormal);
+
+  console.log("verif HEROIC token here", tokenPartCountsRaidOneHeroic);
+
+  console.log("verif MYTHIC token here", tokenPartCountsRaidOneMythic);
 
   const tokenPartMaxRaidOne: { [key: string]: { [key: string]: number } } = {};
 
@@ -475,36 +654,47 @@ function Raids({ compo }: any) {
     return missingParts;
   }
 
-  console.log(tokenPartMaxRaidOne);
+  // console.log(tokenPartMaxRaidOne);
+
+  console.log("verif overall token here 2", tokenPartCountsRaidTwo);
+
+  console.log("verif NORMAL token here 2", tokenPartCountsRaidTwoNormal);
+
+  console.log("verif HEROIC token here  2", tokenPartCountsRaidTwoHeroic);
+
+  console.log("verif MYTHIC token here 2", tokenPartCountsRaidTwoMythic);
+
+  console.log(difficultyToken);
 
   return (
     <>
       <div className={styles.raidscontainer}>
-        <div className={styles.singleraid}>
-          <h2 className={styles.raidtitle}>raid 1 ({mainsRaidOne} main)</h2>
-          <div className={styles.rolecontainer}>
-            <div>
-              {Object.keys(groupedPlayersRaidOne).map((role) => (
-                <div key={role} className={styles.rolemain}>
-                  {/* <h3>
+        <div className={styles.singleraidscontainer}>
+          <div className={styles.singleraid}>
+            <h2 className={styles.raidtitle}>raid 1 ({mainsRaidOne} main)</h2>
+            <div className={styles.rolecontainer}>
+              <div>
+                {Object.keys(groupedPlayersRaidOne).map((role) => (
+                  <div key={role} className={styles.rolemain}>
+                    {/* <h3>
                 {role} ({groupedPlayersRaidOne[role].length})
               </h3> */}
-                  <div className={styles.rolelist}>
-                    {groupedPlayersRaidOne[role].map((player) => (
-                      <p
-                        key={player._id}
-                        className={`${getClassColor(player.class)} ${
-                          styles.playerinraid
-                        }`}
-                      >
-                        {player.name}
-                      </p>
-                    ))}
+                    <div className={styles.rolelist}>
+                      {groupedPlayersRaidOne[role].map((player) => (
+                        <p
+                          key={player._id}
+                          className={`${getClassColor(player.class)} ${
+                            styles.playerinraid
+                          }`}
+                        >
+                          {player.name}
+                        </p>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-
             <div className={styles.missingbuff}>
               {missingBuffsRaidOne.length > 0 ? (
                 <>
@@ -519,60 +709,36 @@ function Raids({ compo }: any) {
                 <div className={styles.allbuffs}>GG full buff big damouge</div>
               )}
             </div>
-          </div>
-          <div className={styles.raiddata}>
-            <div className={styles.tokencount}>
-              {Object.keys(tokenPartMaxRaidOne).map((token) => (
-                <div key={token} className={styles[token]}>
-                  <div className={styles.token}></div>
-                  <h3>
-                    {/*@ts-ignore*/}
-                    {token} ({tokenCountsOne[token]})
-                  </h3>
-                  {Object.entries(
-                    getMissingPartsForToken(
-                      token,
-                      tokenPartMaxRaidOne,
-                      tokenPartCountsRaidOne
-                    )
-                  ).map(([part, missing]) => (
-                    <p key={part}>
-                      {/*@ts-ignore*/}
-                      {partIcons[part]} {missing}
-                    </p>
-                  ))}
-                </div>
-              ))}
-            </div>
 
-            {/* Display missing buffs */}
+            {/* RAID 1 */}
+
+            {/*END RAID 1 */}
           </div>
-        </div>
-        <div className={styles.singleraid}>
-          <h2 className={styles.raidtitle}>raid 2 ({mainsRaidTwo} main)</h2>
-          <div className={styles.rolecontainer}>
-            <div>
-              {Object.keys(groupedPlayersRaidTwo).map((role) => (
-                <div key={role} className={styles.rolemain}>
-                  {/* <h3>
+          <div className={styles.singleraid}>
+            <h2 className={styles.raidtitle}>raid 2 ({mainsRaidTwo} main)</h2>
+            <div className={styles.rolecontainer}>
+              <div>
+                {Object.keys(groupedPlayersRaidTwo).map((role) => (
+                  <div key={role} className={styles.rolemain}>
+                    {/* <h3>
                 {role} ({groupedPlayersRaidTwo[role].length})
               </h3> */}
-                  <div className={styles.rolelist}>
-                    {groupedPlayersRaidTwo[role].map((player) => (
-                      <p
-                        key={player._id}
-                        className={`${getClassColor(player.class)} ${
-                          styles.playerinraid
-                        }`}
-                      >
-                        {player.name}
-                      </p>
-                    ))}
+                    <div className={styles.rolelist}>
+                      {groupedPlayersRaidTwo[role].map((player) => (
+                        <p
+                          key={player._id}
+                          className={`${getClassColor(player.class)} ${
+                            styles.playerinraid
+                          }`}
+                        >
+                          {player.name}
+                        </p>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-
             <div className={styles.missingbuff}>
               {missingBuffsRaidTwo.length > 0 ? (
                 <>
@@ -587,29 +753,133 @@ function Raids({ compo }: any) {
                 <div className={styles.allbuffs}>GG full buff big damouge</div>
               )}
             </div>
+
+            {/* RAID 2 */}
+
+            {/*  END RAID 2 */}
           </div>
-          <div className={styles.raiddata}>
-            <div className={styles.tokencount}>
-              {Object.keys(tokenPartMaxRaidTwo).map((token) => (
-                <div key={token} className={styles[token]}>
-                  <h3>
-                    {/*@ts-ignore*/}
-                    {token} ({tokenCountsTwo[token]})
-                  </h3>
-                  {Object.entries(
-                    getMissingPartsForToken(
-                      token,
-                      tokenPartMaxRaidTwo,
-                      tokenPartCountsRaidTwo
-                    )
-                  ).map(([part, missing]) => (
-                    <p key={part}>
+        </div>
+
+        <div className={styles.raiddatacontainer}>
+          <div className={styles.raidbtncontainer}>
+            <button
+              onClick={(e) => setDifficultyToken("NORMAL")}
+              className={styles.normalbutton}
+            >
+              Normal
+            </button>
+            <button
+              onClick={(e) => setDifficultyToken("HEROIC")}
+              className={styles.heroicbutton}
+            >
+              Heroic
+            </button>
+            <button
+              onClick={(e) => setDifficultyToken("MYTHIC")}
+              className={styles.mythicbutton}
+            >
+              Mythique
+            </button>
+          </div>
+          <span className={styles.chosendifficulty}>
+            Difficulté selectionné : {difficultyToken}
+          </span>
+          <div className={styles.raidtokencontainer}>
+            <div className={styles.raiddata}>
+              <div className={styles.tokencount}>
+                {Object.keys(tokenPartMaxRaidOne).map((token) => (
+                  <div key={token} className={styles[token]}>
+                    <div className={styles.token}></div>
+                    <h3>
                       {/*@ts-ignore*/}
-                      {partIcons[part]} {missing}
-                    </p>
-                  ))}
-                </div>
-              ))}
+                      {token} ({tokenCountsOne[token]})
+                    </h3>
+                    {Object.entries(
+                      (() => {
+                        if (difficultyToken === "NORMAL") {
+                          return getMissingPartsForToken(
+                            token,
+                            tokenPartMaxRaidOne,
+                            tokenPartCountsRaidOneNormal
+                          );
+                        } else if (difficultyToken === "HEROIC") {
+                          return getMissingPartsForToken(
+                            token,
+                            tokenPartMaxRaidOne,
+                            tokenPartCountsRaidOneHeroic
+                          );
+                        } else if (difficultyToken === "MYTHIC") {
+                          return getMissingPartsForToken(
+                            token,
+                            tokenPartMaxRaidOne,
+                            tokenPartCountsRaidOneMythic
+                          );
+                        } else {
+                          return getMissingPartsForToken(
+                            token,
+                            tokenPartMaxRaidOne,
+                            tokenPartCountsRaidOne
+                          );
+                        }
+                      })()
+                    ).map(([part, missing]) => (
+                      <p key={part}>
+                        {/*@ts-ignore*/}
+                        {partIcons[part]} {missing}
+                      </p>
+                    ))}
+                  </div>
+                ))}
+              </div>
+
+              {/* Display missing buffs */}
+            </div>
+
+            <div className={styles.raiddata}>
+              <div className={styles.tokencount}>
+                {Object.keys(tokenPartMaxRaidTwo).map((token) => (
+                  <div key={token} className={styles[token]}>
+                    <h3>
+                      {/*@ts-ignore*/}
+                      {token} ({tokenCountsTwo[token]})
+                    </h3>
+                    {Object.entries(
+                      (() => {
+                        if (difficultyToken === "NORMAL") {
+                          return getMissingPartsForToken(
+                            token,
+                            tokenPartMaxRaidTwo,
+                            tokenPartCountsRaidTwoNormal
+                          );
+                        } else if (difficultyToken === "HEROIC") {
+                          return getMissingPartsForToken(
+                            token,
+                            tokenPartMaxRaidTwo,
+                            tokenPartCountsRaidTwoHeroic
+                          );
+                        } else if (difficultyToken === "MYTHIC") {
+                          return getMissingPartsForToken(
+                            token,
+                            tokenPartMaxRaidTwo,
+                            tokenPartCountsRaidTwoMythic
+                          );
+                        } else {
+                          return getMissingPartsForToken(
+                            token,
+                            tokenPartMaxRaidTwo,
+                            tokenPartCountsRaidTwo
+                          );
+                        }
+                      })()
+                    ).map(([part, missing]) => (
+                      <p key={part}>
+                        {/*@ts-ignore*/}
+                        {partIcons[part]} {missing}
+                      </p>
+                    ))}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

@@ -88,6 +88,13 @@
 
 .gear {
   font-size: 28px;
+  margin-right: 25px;
+  cursor: pointer;
+}
+
+.geartext {
+  font-size: 20px;
+  margin-right: 25px;
   cursor: pointer;
 }
 
@@ -122,7 +129,7 @@
 }
 
 .black {
-  color: black;
+  color: rgb(75, 74, 74);
 }
 
 .mage {

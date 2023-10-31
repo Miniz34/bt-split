@@ -62,6 +62,7 @@ export default function Home({
   const [sortByToken, setSortByToken] = useState(true); // To indicate whether to sort by token
   const [clearModal, setClearModal] = useState(false);
   const [inputModal, setInputModal] = useState(false);
+  const [toggleIcons, setToggleIcons] = useState("ICON");
 
   console.log("clearModalValue:", clearModal);
 
@@ -146,6 +147,14 @@ export default function Home({
         return sortedPlayers;
       }
     });
+  };
+
+  const callToggleIcons = () => {
+    if (toggleIcons === "ICON") {
+      setToggleIcons("TEXT");
+    } else {
+      setToggleIcons("ICON");
+    }
   };
 
   //TODO handle any
@@ -330,6 +339,11 @@ export default function Home({
               >
                 Sort by {sortByToken ? "Role" : "Token"}
               </button>
+
+              <button onClick={callToggleIcons} className={styles.buttonheader}>
+                Display {toggleIcons === "ICON" ? "Text" : "Icons"}
+              </button>
+
               <button
                 className={styles.buttonheader}
                 onClick={(e) => openInputModal(setInputModal)}
@@ -365,6 +379,8 @@ export default function Home({
                     selectedPlayer={selectedPlayer}
                     clearModal={clearModal}
                     inputModal={inputModal}
+                    toggleIcons={toggleIcons}
+                    setToggleIcons={setToggleIcons}
                   />
                 </div>
               </div>

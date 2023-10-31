@@ -36,6 +36,8 @@ function PlayerCard({
   selectedPlayer,
   clearModal,
   inputModal,
+  toggleIcons,
+  setToggleIcons,
 }: any) {
   const getSetItemClassName = (value: string) => {
     if (value === null) {
@@ -169,12 +171,18 @@ function PlayerCard({
                         key={setItem}
                         className={`${getSetItemClassName(
                           player.set[setItem]
-                        )} ${styles.gear}`}
+                        )} ${
+                          toggleIcons === "ICON" ? styles.gear : styles.geartext
+                        }`}
                         onClick={() =>
                           showModal(player, setItem, player.set[setItem])
                         }
                       >
-                        {renderEquipmentIcon(setItem)}
+                        {
+                          toggleIcons === "ICON"
+                            ? renderEquipmentIcon(setItem)
+                            : setItem // Replace with the desired text
+                        }
                       </li>
                     ))}
                   </div>

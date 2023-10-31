@@ -208,3 +208,19 @@ export async function clearRaid() {
     return { ok: false };
   }
 }
+
+export async function removePlayerFromRaids(playerId: any) {
+  try {
+    const response = await fetch("/api/removePlayerFromRaid", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ playerId }),
+    });
+    return response;
+  } catch (error) {
+    console.error("Error updating raid:", error);
+    return { ok: false };
+  }
+}

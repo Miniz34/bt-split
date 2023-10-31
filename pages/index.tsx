@@ -9,7 +9,11 @@ import App from "./app";
 import Raids from "./components/Raids";
 import styles from "./index.module.css";
 import { setRaidOne } from "../utils//managePlayer"; // Replace with your API client
-import { updateSet, clearRaid } from "../utils/managePlayer";
+import {
+  updateSet,
+  clearRaid,
+  removePlayerFromRaids,
+} from "../utils/managePlayer";
 import NukeModal from "./components/NukeModal";
 import { openClearModal, openInputModal } from "../utils/modals";
 
@@ -98,6 +102,34 @@ export default function Home({
                 ...player,
                 main: { ...player.main, raid: raidOneValue },
                 alt: { ...player.alt, raid: raidTwoValue },
+              };
+            }
+            return player;
+          })
+        );
+      } else {
+        console.error("Failed to update raid");
+      }
+    } catch (error) {
+      console.error("Error updating raid:", error);
+    }
+  }
+
+  async function removePlayer(playerId: any) {
+    try {
+      const response = await removePlayerFromRaids(playerId);
+      if (response.ok) {
+        console.log("Raid updated successfully");
+        // Update the state of the player whose raid was changed
+        // @ts-ignore
+        setPlayers((prevPlayers) =>
+          prevPlayers.map((player) => {
+            if (player._id === playerId) {
+              // Update the player's raid
+              return {
+                ...player,
+                main: { ...player.main, raid: null },
+                alt: { ...player.alt, raid: null },
               };
             }
             return player;
@@ -381,6 +413,7 @@ export default function Home({
                     inputModal={inputModal}
                     toggleIcons={toggleIcons}
                     setToggleIcons={setToggleIcons}
+                    removePlayer={removePlayer}
                   />
                 </div>
               </div>

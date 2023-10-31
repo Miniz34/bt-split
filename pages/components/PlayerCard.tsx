@@ -13,13 +13,17 @@ import {
   FaStar,
 } from "react-icons/fa"; // Import icons you want to use
 
+import { removePlayerFromRaids } from "../../utils//managePlayer";
+
 import {
   GiCenturionHelmet,
   GiSpikedShoulderArmor,
   GiChestArmor,
   GiWinterGloves,
+  GiCancel,
 } from "react-icons/gi";
 import { PiPantsFill } from "react-icons/pi";
+import { TiCancel } from "react-icons/ti";
 
 import SetModal from "./SetModal";
 
@@ -38,6 +42,7 @@ function PlayerCard({
   inputModal,
   toggleIcons,
   setToggleIcons,
+  removePlayer,
 }: any) {
   const getSetItemClassName = (value: string) => {
     if (value === null) {
@@ -247,6 +252,14 @@ function PlayerCard({
                   }}
                 >
                   2
+                </button>
+                <button
+                  className={`${styles.button} ${styles.removeplayerfromraid}`}
+                  onClick={(e) => {
+                    removePlayer(player._id);
+                  }}
+                >
+                  <TiCancel />
                 </button>
               </div>
             </div>

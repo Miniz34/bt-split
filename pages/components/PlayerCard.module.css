@@ -71,6 +71,7 @@
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  margin-top: 4px;
 }
 
 .button:hover {
@@ -96,6 +97,12 @@
   font-size: 20px;
   margin-right: 25px;
   cursor: pointer;
+}
+
+.removeplayerfromraid {
+  font-size: 24px;
+  padding: 8px;
+  color: #e06666;
 }
 
 .gear:hover {

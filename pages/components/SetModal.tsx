@@ -59,7 +59,7 @@ function SetModal({
               : ""
           } ${styles.modalselect}`}
         >
-          NULL
+          NONE
         </p>
         <p
           onClick={() => handleClickModal("NORMAL")}

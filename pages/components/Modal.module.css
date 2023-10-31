@@ -60,6 +60,8 @@
 
 .inputmodalbutton {
   background-color: #f44336;
+  cursor: pointer;
+
   border-radius: 10px;
   width: 35px;
   height: 35px;

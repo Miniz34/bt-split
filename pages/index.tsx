@@ -269,8 +269,8 @@ export default function Home({
     <>
       <div className="container">
         <Head>
-          <title>Create Next App</title>
-          <link rel="icon" href="/favicon.ico" />
+          <title>BT Splits</title>
+          <link rel="icon" href="/btlogo.ico" />
         </Head>
         <main>
           <div className={styles.indexhead}>

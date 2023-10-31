@@ -10,6 +10,7 @@
   width: 40%;
   min-height: 100vh;
   margin: none;
+  box-shadow: inset 4px -1px 23px 0px #000000;
 }
 
 .singleraidscontainer {
@@ -17,14 +18,18 @@
   flex-direction: row;
   justify-content: space-around;
   background-color: #1e1e1e;
+
   margin: none;
+  margin-left: 25px;
   height: 100%;
+  width: 95%;
 }
 
 .raiddatacontainer {
   display: flex;
   flex-direction: column;
   min-height: 100%;
+  margin-left: 15px;
 }
 
 .raidtokencontainer {
@@ -93,7 +98,8 @@
 .raiddata {
   margin-top: 40px;
   padding-bottom: 10px;
-  border: solid white 1px;
+  box-shadow: 0px 0px 7px 3px #000000;
+
   width: 50%;
   min-height: 505px;
 }

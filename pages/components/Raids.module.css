@@ -64,9 +64,10 @@
 
 .tokencount {
   display: flex;
-  gap: 25px;
+  flex-direction: row;
   flex-wrap: wrap;
-  margin-left: 5px;
+
+  width: 100%;
 }
 
 .playerinraid {
@@ -82,17 +83,28 @@
 }
 
 .Mystic {
+  text-align: center;
   order: 1;
+  width: 50%;
 }
 
 .Zenith {
+  text-align: center;
+
   order: 2;
+  width: 50%;
 }
 
 .Dreadful {
+  text-align: center;
+
   order: 3;
+  width: 50%;
 }
 
 .Venerated {
+  text-align: center;
+
   order: 4;
+  width: 50%;
 }

@@ -525,7 +525,7 @@ function Raids({ compo }: any) {
                   <div className={styles.token}></div>
                   <h3>
                     {/*@ts-ignore*/}
-                    {token} :{tokenCountsOne[token]}
+                    {token} ({tokenCountsOne[token]})
                   </h3>
                   {Object.entries(
                     getMissingPartsForToken(
@@ -592,7 +592,7 @@ function Raids({ compo }: any) {
                 <div key={token} className={styles[token]}>
                   <h3>
                     {/*@ts-ignore*/}
-                    {token} :{tokenCountsTwo[token]}
+                    {token} ({tokenCountsTwo[token]})
                   </h3>
                   {Object.entries(
                     getMissingPartsForToken(

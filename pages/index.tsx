@@ -10,6 +10,8 @@ import Raids from "./components/Raids";
 import styles from "./index.module.css";
 import { setRaidOne } from "../utils//managePlayer"; // Replace with your API client
 import { updateSet, clearRaid } from "../utils/managePlayer";
+import NukeModal from "./components/NukeModal";
+import { openClearModal, openInputModal } from "../utils/modals";
 
 type ConnectionStatus = {
   isConnected: boolean;
@@ -58,8 +60,24 @@ export default function Home({
   const [lastModified, setLastModified] = useState(""); // Initialize with an empty string
   const [sortedData, setSortedData] = useState<Player[]>([]); // To store the current sorted data
   const [sortByToken, setSortByToken] = useState(true); // To indicate whether to sort by token
+  const [clearModal, setClearModal] = useState(false);
+  const [inputModal, setInputModal] = useState(false);
+
+  console.log("clearModalValue:", clearModal);
+
+  // function openClearModal(setClearModal: any) {
+  //   setClearModal(true);
+  // }
 
   // const [displayModal, setDisplayModal] = useState(false);
+
+  async function resetData() {
+    confirm("are you sure you want to reset the raids ?");
+    if (confirm()) {
+      clearRaid();
+      location.reload();
+    }
+  }
 
   async function updateRaidForPlayer(
     playerId: any,
@@ -131,10 +149,10 @@ export default function Home({
   };
 
   //TODO handle any
-  const handleSavePlayer = (playerData: any) => {
-    // Handle saving player data (e.g., send it to your API)
-    createPlayer(playerData); // Call the createPlayer function with the player data
-  };
+  // const handleSavePlayer = (playerData: any) => {
+  //   // Handle saving player data (e.g., send it to your API)
+  //   createPlayer(playerData); // Call the createPlayer function with the player data
+  // };
 
   const sortedPlayers = [...players].sort((a, b) => {
     const roleOrder: { [key: string]: number } = {
@@ -264,8 +282,16 @@ export default function Home({
               >
                 Sort by {sortByToken ? "Role" : "Token"}
               </button>
-              <button className={styles.buttonheader}>Add Player</button>
-              <button className={styles.buttonheader} onClick={clearRaid}>
+              <button
+                className={styles.buttonheader}
+                onClick={(e) => openInputModal(setInputModal)}
+              >
+                Add Player
+              </button>
+              <button
+                className={styles.buttonheader}
+                onClick={(e) => openClearModal(setClearModal)}
+              >
                 Nuke
               </button>
             </div>
@@ -289,6 +315,8 @@ export default function Home({
                     selectedValue={selectedValue}
                     selectedItem={selectedItem}
                     selectedPlayer={selectedPlayer}
+                    clearModal={clearModal}
+                    inputModal={inputModal}
                   />
                 </div>
               </div>
@@ -328,8 +356,8 @@ export default function Home({
           </div> */}
         </main>
         <Raids compo={players} />
-
-        <div></div>
+        {clearModal ? <NukeModal setClearModal={setClearModal} /> : null}
+        {inputModal ? <Modal setInputModal={setInputModal} /> : null}
 
         <style jsx>{`
           .container {

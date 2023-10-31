@@ -34,6 +34,8 @@ function PlayerCard({
   selectedValue,
   selectedItem,
   selectedPlayer,
+  clearModal,
+  inputModal,
 }: any) {
   const getSetItemClassName = (value: string) => {
     if (value === null) {
@@ -122,7 +124,11 @@ function PlayerCard({
 
   return (
     <>
-      <div className={`${styles.card} ${displayModal ? styles.disable : ""}`}>
+      <div
+        className={`${styles.card} ${
+          displayModal || clearModal || inputModal ? styles.disable : ""
+        }`}
+      >
         {players && Array.isArray(players) ? (
           players.map((player: any) => (
             <div

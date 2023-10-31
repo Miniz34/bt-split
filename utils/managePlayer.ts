@@ -34,13 +34,12 @@ export const createPlayer = async (playerData: any) => {
         "Content-Type": "application/json", // Set the content type for JSON data
       },
       body: JSON.stringify({
-        playerId: 34,
         main: {
           name: playerData.name,
           class: playerData.class,
           role: playerData.role,
           token: getTokenType(playerData.class),
-          raid: 2,
+          raid: null,
         },
         alt: {
           name: playerData.alt,
@@ -48,15 +47,15 @@ export const createPlayer = async (playerData: any) => {
           //TODO remove caps class
           class: playerData.altClass,
           role: playerData.altRole,
-          raid: 1,
+          raid: null,
         },
 
         set: {
           head: null,
-          shoulders: "NORMAL",
-          chest: "MYTHIC",
-          hands: "HEROIC",
-          legs: "HEROIC",
+          shoulders: null,
+          chest: null,
+          hands: null,
+          legs: null,
         },
         lastModified: isoDate,
       }),

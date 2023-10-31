@@ -1,5 +1,11 @@
 import React, { useState, ChangeEvent } from "react";
 import { createPlayer, updatePlayer } from "../../utils/managePlayer";
+import styles from "./Modal.module.css";
+import {
+  openInputModal,
+  closeInputModal,
+  handleSavePlayer,
+} from "../../utils/modals";
 
 interface PlayerData {
   name: string;
@@ -10,23 +16,22 @@ interface PlayerData {
   altRole: string;
 }
 
-interface PlayerModalProps {
-  show: boolean;
-  handleClose: () => void;
-  handleSave: (data: PlayerData) => void;
-}
-
-const Modal: React.FC<PlayerModalProps> = ({
-  show,
-  handleClose,
-  handleSave,
-}) => {
+const Modal = ({ setInputModal }: any) => {
   const [playerData, setPlayerData] = useState<PlayerData>({
     name: "",
     class: "",
     alt: "",
     altClass: "",
     role: "",
+    altRole: "",
+  });
+
+  const [errors, setErrors] = useState({
+    name: "",
+    class: "",
+    role: "",
+    alt: "",
+    altClass: "",
     altRole: "",
   });
 
@@ -48,6 +53,19 @@ const Modal: React.FC<PlayerModalProps> = ({
         ...prevData,
         [name]: isChecked,
       }));
+      if (
+        name === "name" ||
+        name === "class" ||
+        name === "role" ||
+        name === "alt" ||
+        name === "altClass" ||
+        name === "altRole"
+      ) {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          [name]: value ? "" : "This field is required",
+        }));
+      }
     } else {
       setPlayerData((prevData) => ({
         ...prevData,
@@ -56,36 +74,70 @@ const Modal: React.FC<PlayerModalProps> = ({
     }
   }
 
-  const handleSaveClick = () => {
-    // Pass the playerData to the parent component for saving
-    handleSave(playerData);
-    handleClose(); // Close the modal
-  };
+  function isFormValid() {
+    const { name, class: className, role } = playerData;
+
+    const nameError = !name ? "Name is required" : "";
+    const classError = !className ? "Class is required" : "";
+    const roleError = !role ? "Role is required" : "";
+    const altError = !role ? "Alt is required" : "";
+    const altClassError = !role ? "Alt class is required" : "";
+    const altRoleError = !role ? "Alt Role is required" : "";
+
+    setErrors({
+      name: nameError,
+      class: classError,
+      role: roleError,
+      alt: altError,
+      altClass: altClassError,
+      altRole: altRoleError,
+    });
+
+    return (
+      !nameError &&
+      !classError &&
+      !roleError &&
+      !altError &&
+      !altClassError &&
+      !altRoleError
+    );
+  }
+
+  // const handleSaveClick = () => {
+  //   // Pass the playerData to the parent component for saving
+  //   handleSave(playerData);
+  //   handleClose(); // Close the modal
+  // };
 
   return (
-    <div className={`modal ${show ? "show" : ""}`}>
-      <div className="modal-dialog">
-        <div className="modal-content">
-          <div className="modal-header">
-            <h5 className="modal-title">Add Player</h5>
-            <button type="button" className="close" onClick={handleClose}>
+    <div className={styles.inputmodalcontainer}>
+      <div className={styles.modaldialog}>
+        <div className={styles.modalcontent}>
+          <div className={styles.inputmodalheader}>
+            <h5 className={styles.inputmodaltitle}>Add Player</h5>
+            <button
+              type="button"
+              className={styles.inputmodalbutton}
+              onClick={(e) => closeInputModal(setInputModal)}
+            >
               <span>&times;</span>
             </button>
           </div>
-          <div className="modal-body">
+          <div className={styles.inputmodalbody}>
             <form>
-              <div className="form-group">
-                <label>Name</label>
+              <div className={styles.formgroup}>
+                <label className={styles.labelmodal}>Name</label>
                 <input
                   type="text"
                   name="name"
                   value={playerData.name}
                   onChange={handleChange}
-                  className="form-control"
+                  className={styles.formmodal}
                 />
+                <span className={styles.error}>{errors.name}</span>
               </div>
-              <div className="form-group">
-                <label>Class</label>
+              <div className={styles.formgroup}>
+                <label className={styles.labelmodal}>Class</label>
                 <select
                   name="class"
                   value={playerData.class}
@@ -107,9 +159,10 @@ const Modal: React.FC<PlayerModalProps> = ({
                   <option value="DK">DK</option>
                   <option value="Rogue">Rogue</option>
                 </select>
+                <span className={styles.error}>{errors.class}</span>
               </div>
-              <div className="form-group">
-                <label>Role</label>
+              <div className={styles.formgroup}>
+                <label className={styles.labelmodal}>Role</label>
                 <select
                   name="role"
                   value={playerData.role}
@@ -123,24 +176,26 @@ const Modal: React.FC<PlayerModalProps> = ({
                   <option value="RANGED_DPS">RANGED DPS</option>
                   <option value="MELEE_DPS">MELEE DPS</option>
                 </select>
+                <span className={styles.error}>{errors.role}</span>
               </div>
-              <div className="form-group">
-                <label>Alt</label>
+              <div className={styles.formgroup}>
+                <label className={styles.labelmodal}>Alt</label>
                 <input
                   type="text"
                   name="alt"
                   value={playerData.alt}
                   onChange={handleChange}
-                  className="form-control"
+                  className={styles.formmodal}
                 />
+                <span className={styles.error}>{errors.alt}</span>
               </div>
-              <div className="form-group">
-                <label>Class</label>
+              <div className={styles.formgroup}>
+                <label className={styles.labelmodal}>Class</label>
                 <select
                   name="altClass"
-                  value={playerData.class}
+                  value={playerData.altClass}
                   onChange={handleChange}
-                  className="form-control"
+                  className={styles.formmodal}
                 >
                   <option value="">Select Class</option>{" "}
                   {/* Empty placeholder */}
@@ -158,14 +213,15 @@ const Modal: React.FC<PlayerModalProps> = ({
                   <option value="DK">DK</option>
                   <option value="Rogue">Rogue</option>
                 </select>
+                <span className={styles.error}>{errors.altClass}</span>
               </div>
-              <div className="form-group">
-                <label>Alt Role</label>
+              <div className={styles.formgroup}>
+                <label className={styles.labelmodal}>Alt Role</label>
                 <select
                   name="altRole"
-                  value={playerData.role}
+                  value={playerData.altRole}
                   onChange={handleChange}
-                  className="form-control"
+                  className={styles.formmodal}
                 >
                   <option value="">Select Role</option>{" "}
                   {/* Empty placeholder */}
@@ -174,21 +230,26 @@ const Modal: React.FC<PlayerModalProps> = ({
                   <option value="RANGED_DPS">RANGED DPS</option>
                   <option value="MELEE_DPS">MELEE DPS</option>
                 </select>
+                <span className={styles.error}>{errors.altRole}</span>
               </div>
             </form>
           </div>
-          <div className="modal-footer">
+          <div className={styles.modalbntlist}>
             <button
               type="button"
-              className="btn btn-secondary"
-              onClick={handleClose}
+              className={styles.inputclosemodal}
+              onClick={(e) => closeInputModal(setInputModal)}
             >
               Cancel
             </button>
             <button
               type="button"
-              className="btn btn-primary"
-              onClick={handleSaveClick}
+              className={styles.inputsavemodal}
+              onClick={(e) => {
+                if (isFormValid()) {
+                  handleSavePlayer(playerData, createPlayer, setInputModal);
+                }
+              }}
             >
               Save
             </button>

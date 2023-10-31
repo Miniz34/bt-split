@@ -31,3 +31,7 @@
 .rolesection {
   margin-bottom: 75px;
 }
+
+.disable {
+  opacity: 0;
+}

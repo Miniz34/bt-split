@@ -28,6 +28,7 @@ function Raids({ compo, toggleIcons }: any) {
       class: string;
       raid: number;
     };
+    set: any;
 
     token: string;
     lastModified: string;
@@ -656,15 +657,7 @@ function Raids({ compo, toggleIcons }: any) {
 
   // console.log(tokenPartMaxRaidOne);
 
-  console.log("verif overall token here 2", tokenPartCountsRaidTwo);
-
-  console.log("verif NORMAL token here 2", tokenPartCountsRaidTwoNormal);
-
-  console.log("verif HEROIC token here  2", tokenPartCountsRaidTwoHeroic);
-
-  console.log("verif MYTHIC token here 2", tokenPartCountsRaidTwoMythic);
-
-  console.log(difficultyToken);
+  console.log("grouped players raid ONE", groupedPlayersRaidOne);
 
   return (
     <>
@@ -685,7 +678,7 @@ function Raids({ compo, toggleIcons }: any) {
                           key={player._id}
                           className={`${getClassColor(player.class)} ${
                             styles.playerinraid
-                          }`}
+                          } ${player.set ? styles.hasSet : ""}`}
                         >
                           {player.name}
                         </p>
@@ -729,7 +722,7 @@ function Raids({ compo, toggleIcons }: any) {
                           key={player._id}
                           className={`${getClassColor(player.class)} ${
                             styles.playerinraid
-                          }`}
+                          } ${player.set ? styles.hasSet : ""}`}
                         >
                           {player.name}
                         </p>

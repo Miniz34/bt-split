@@ -663,7 +663,7 @@ function Raids({ compo, toggleIcons }: any) {
     <>
       <div className={styles.raidscontainer}>
         <div className={styles.singleraidscontainer}>
-          <div className={styles.singleraid}>
+          <div className={`${styles.singleraid} ${styles.singleraidone}`}>
             <h2 className={styles.raidtitle}>raid 1 ({mainsRaidOne} main)</h2>
             <div className={styles.rolecontainer}>
               <div>

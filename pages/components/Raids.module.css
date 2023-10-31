@@ -79,12 +79,15 @@
   width: 50%;
   padding-right: 10px;
   padding-left: 10px;
-  border-right: solid black 2px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-content: space-around;
   min-height: 100%;
+}
+
+.singleraidone {
+  border-right: solid black 1px;
 }
 
 .chosendifficulty {

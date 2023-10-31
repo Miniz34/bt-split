@@ -292,7 +292,7 @@ export default function Home({
                 className={styles.buttonheader}
                 onClick={(e) => openClearModal(setClearModal)}
               >
-                Nuke
+                Reset Raids
               </button>
             </div>
           </div>

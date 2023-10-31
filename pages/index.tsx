@@ -161,9 +161,33 @@ export default function Home({
       RANGED_DPS: 3,
       MELEE_DPS: 4,
     };
-    return roleOrder[a.main.role] - roleOrder[b.main.role];
-  });
 
+    const classOrder: { [key: string]: number } = {
+      Priest: 1,
+      Mage: 2,
+      Evoker: 3,
+      Warlock: 4,
+      Druid: 5,
+      Hunter: 6,
+      Warrior: 7,
+      Rogue: 8,
+      Monk: 9,
+      Paladin: 10,
+      DH: 11,
+      DK: 12,
+      Shaman: 13,
+
+      // Add more classes as needed...
+    };
+
+    const roleComparison = roleOrder[a.main.role] - roleOrder[b.main.role];
+
+    if (roleComparison === 0) {
+      return classOrder[a.main.class] - classOrder[b.main.class];
+    }
+
+    return roleComparison;
+  });
   const groupedPlayers: Record<string, Player[]> = {};
   sortedPlayers.forEach((player) => {
     const { role } = player.main;
@@ -180,10 +204,35 @@ export default function Home({
       Dreadful: 3,
       Venerated: 4,
     };
-    return tokenOrder[a.main.token] - tokenOrder[b.main.token];
+
+    const classOrder: { [key: string]: number } = {
+      Priest: 1,
+      Mage: 2,
+      Evoker: 3,
+      Warlock: 4,
+      Druid: 5,
+      Hunter: 6,
+      Warrior: 7,
+      Rogue: 8,
+      Monk: 9,
+      Paladin: 10,
+      DH: 11,
+      DK: 12,
+      Shaman: 13,
+      // Add more classes as needed...
+    };
+
+    const tokenComparison = tokenOrder[a.main.token] - tokenOrder[b.main.token];
+
+    if (tokenComparison === 0) {
+      return classOrder[a.main.class] - classOrder[b.main.class];
+    }
+
+    return tokenComparison;
   });
 
   const groupedPlayersToken: Record<string, Player[]> = {};
+
   sortedPlayersByToken.forEach((player) => {
     const { token } = player.main;
     if (!groupedPlayersToken[token]) {
@@ -191,7 +240,6 @@ export default function Home({
     }
     groupedPlayersToken[token].push(player);
   });
-
   const [displayModal, setDisplayModal] = useState(false);
 
   const [selectedPlayer, setSelectedPlayer] = useState(null);

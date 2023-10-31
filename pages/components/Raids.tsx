@@ -375,6 +375,8 @@ function Raids({ compo }: any) {
     }
   });
 
+  //Vérifier par difficulté : TokenparsCountsRaidOneMythic > foreach
+
   const tokenPartMaxRaidOne: { [key: string]: { [key: string]: number } } = {};
 
   // Iterate through the raidOneToken data

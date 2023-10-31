@@ -10,7 +10,7 @@ import {
 } from "react-icons/gi";
 import { PiPantsFill } from "react-icons/pi";
 
-function Raids({ compo }: any) {
+function Raids({ compo, toggleIcons }: any) {
   interface Player {
     name: string;
     class: string;
@@ -823,9 +823,17 @@ function Raids({ compo }: any) {
                         }
                       })()
                     ).map(([part, missing]) => (
-                      <p key={part}>
-                        {/*@ts-ignore*/}
-                        {partIcons[part]} {missing}
+                      <p key={part} className={styles.missingtokendata}>
+                        {toggleIcons === "ICON" ? (
+                          <>
+                            {/*@ts-ignore*/}
+                            {partIcons[part]} {missing}
+                          </>
+                        ) : (
+                          <>
+                            {part} {missing}
+                          </>
+                        )}
                       </p>
                     ))}
                   </div>
@@ -872,9 +880,17 @@ function Raids({ compo }: any) {
                         }
                       })()
                     ).map(([part, missing]) => (
-                      <p key={part}>
-                        {/*@ts-ignore*/}
-                        {partIcons[part]} {missing}
+                      <p key={part} className={styles.missingtokendata}>
+                        {toggleIcons === "ICON" ? (
+                          <>
+                            {/*@ts-ignore*/}
+                            {partIcons[part]} {missing}
+                          </>
+                        ) : (
+                          <>
+                            {part} {missing}
+                          </>
+                        )}
                       </p>
                     ))}
                   </div>

@@ -419,7 +419,7 @@ export default function Home({
             </button>
           </div> */}
         </main>
-        <Raids compo={players} />
+        <Raids compo={players} toggleIcons={toggleIcons} />
         {clearModal ? <NukeModal setClearModal={setClearModal} /> : null}
         {inputModal ? <Modal setInputModal={setInputModal} /> : null}
 

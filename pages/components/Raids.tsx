@@ -549,14 +549,6 @@ function Raids({ compo, toggleIcons }: any) {
     }
   });
 
-  console.log("verif overall token here", tokenPartCountsRaidOne);
-
-  console.log("verif NORMAL token here", tokenPartCountsRaidOneNormal);
-
-  console.log("verif HEROIC token here", tokenPartCountsRaidOneHeroic);
-
-  console.log("verif MYTHIC token here", tokenPartCountsRaidOneMythic);
-
   const tokenPartMaxRaidOne: { [key: string]: { [key: string]: number } } = {};
 
   // Iterate through the raidOneToken data

@@ -10,7 +10,7 @@ import {
 } from "../../utils/modals";
 
 interface PlayerData {
-  _id: string;
+  _id: any;
   name: string;
   class: string;
   alt: string;
@@ -21,14 +21,16 @@ interface PlayerData {
 
 const EditModal = ({ setEditModal, player }: any) => {
   const [playerData, setPlayerData] = useState<PlayerData>({
-    _id: player._id,
-    name: player.main.name,
-    class: player.main.class,
-    alt: player.alt.name,
-    altClass: player.alt.class,
-    role: player.main.role,
-    altRole: player.alt.role,
+    _id: player && player._id,
+    name: player && player.main.name,
+    class: player && player.main.class,
+    alt: player && player.alt.name,
+    altClass: player && player.alt.class,
+    role: player && player.main.role,
+    altRole: player && player.alt.role,
   });
+
+  console.log("CHECK ID HERE:", playerData._id);
 
   const [errors, setErrors] = useState({
     name: "",
@@ -120,7 +122,7 @@ const EditModal = ({ setEditModal, player }: any) => {
       <div className={styles.modaldialog}>
         <div className={styles.modalcontent}>
           <div className={styles.inputmodalheader}>
-            <h5 className={styles.inputmodaltitle}>Edit {player.main.name}</h5>
+            <h5 className={styles.inputmodaltitle}>Edit </h5>
             <button
               type="button"
               className={styles.inputmodalbutton}

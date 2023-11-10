@@ -19,6 +19,8 @@ export default async function handler(req, res) {
 
     // Log the query and update operation for debugging
     // console.log("Query:", query);
+
+
     const updateOperation = {
       $set: { "main.raid": raidOneValue, "alt.raid": raidTwoValue },
     };

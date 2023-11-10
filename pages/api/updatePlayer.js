@@ -46,13 +46,16 @@ export default async function handler(req, res) {
       const playerData = req.body;
 
       // Extract the _id from the playerData
-      const playerId = playerData._id;
+      const playerId = playerData._id && playerData._id
 
       // Create a filter to find the player by _id
       const filter = { _id: new ObjectId(playerId) };
 
       // Exclude _id from the update operation
       const { _id, ...updateData } = playerData;
+
+      console.log("player id from body :", playerId)
+      console.log("playerIdObject:", filter)
 
       // Define the update operation
       const updateOperation = {

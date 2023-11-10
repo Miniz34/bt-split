@@ -50,10 +50,15 @@ function PlayerCard({
 }: any) {
   const [editModal, setEditModal] = useState(false);
   const [playerToEdit, setPlayerToEdit] = useState(null);
-  const openEditModal = (player: any) => {
+  const openEditModal = (player: any, playerToEdit: any) => {
     setEditModal(true);
     const playerToEditCopy = { ...player };
     setPlayerToEdit(playerToEditCopy);
+  };
+
+  const handleEditClick = (player: any) => {
+    setPlayerToEdit(player);
+    setEditModal(true);
   };
 
   const getSetItemClassName = (value: string) => {
@@ -143,7 +148,7 @@ function PlayerCard({
                   </div>
                   <div>
                     <button
-                      onClick={(e) => openEditModal(player)}
+                      onClick={(e) => handleEditClick(player)}
                       className={styles.editbutton}
                     >
                       <BiPencil />
@@ -260,7 +265,7 @@ function PlayerCard({
           <p>Invalid players data</p>
         )}
       </div>
-      {editModal ? (
+      {playerToEdit && editModal ? (
         <EditModal setEditModal={setEditModal} player={playerToEdit} />
       ) : null}
 

@@ -261,7 +261,7 @@ export const editPlayer = async (playerData: any) => {
         "Content-Type": "application/json", // Set the content type for JSON data
       },
       body: JSON.stringify({
-        _id: playerData._id,
+        _id: playerData._id && playerData._id,
         main: {
           name: playerData.name,
           class: playerData.class,

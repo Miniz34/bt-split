@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import React from "react";
 import Select from "react-select";
 import { getBorderColor, getClassColor } from "../../utils/colors";
+import { openInputModal } from "../../utils/modals";
 import { setRaidOne } from "../../utils//managePlayer"; // Replace with your API client
 import helm from "../../public/helmet-game-svgrepo-com.svg";
 import {
@@ -24,8 +25,10 @@ import {
 } from "react-icons/gi";
 import { PiPantsFill } from "react-icons/pi";
 import { TiCancel } from "react-icons/ti";
+import { BiPencil } from "react-icons/bi";
 
 import SetModal from "./SetModal";
+import EditModal from "./EditModal";
 
 function PlayerCard({
   players,
@@ -43,7 +46,16 @@ function PlayerCard({
   toggleIcons,
   setToggleIcons,
   removePlayer,
+  setInputModal,
 }: any) {
+  const [editModal, setEditModal] = useState(false);
+  const [playerToEdit, setPlayerToEdit] = useState(null);
+  const openEditModal = (player: any) => {
+    setEditModal(true);
+    const playerToEditCopy = { ...player };
+    setPlayerToEdit(playerToEditCopy);
+  };
+
   const getSetItemClassName = (value: string) => {
     if (value === null) {
       return styles.black;
@@ -75,40 +87,9 @@ function PlayerCard({
     // You can return another icon (e.g., a default icon) for other values
   };
 
-  // async function updateRaidForPlayer(
-  //   playerId: any,
-  //   raidOneValue: number,
-  //   raidTwoValue: number
-  // ) {
-  //   try {
-  //     const response = await setRaidOne(playerId, raidOneValue, raidTwoValue);
-  //     if (response.ok) {
-  //       console.log("Raid updated successfully");
-  //     } else {
-  //       console.error("Failed to update raid");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error updating raid:", error);
-  //   }
-  // }
-
-  // const [displayModal, setDisplayModal] = useState(false);
-
-  // const showModal = (player: any, item: any) => {
-  //   setSelectedPlayer(player);
-  //   setSelectedItem(item);
-  //   setDisplayModal(true);
-  //   console.log("modal opened");
-  // };
-
-  // const handleValueClick = (value: any) => {
-  //   // Handle the clicked value here, for example, log it
-  //   console.log("Clicked value: ", value);
-  // };
-
-  // const handleCloseModal = () => {
-  //   setDisplayModal(false);
-  // };
+  function getValues(player: any) {
+    console.log(player.alt.name);
+  }
 
   function countSetValues(playerData: any) {
     if (playerData && playerData.set) {
@@ -146,18 +127,28 @@ function PlayerCard({
               }}
             >
               <div className={styles.textcard}>
-                <div className={styles.textcardmain}>
-                  <h3
-                    className={`${getClassColor(player.main.class)} ${
-                      styles.mainchar
-                    }`}
-                  >
-                    {player.main.name}
-                  </h3>
-                  {/* <p>{player.class}</p> */}
-                  <p>
-                    {player.main.token} {countSetValues(player)}p
-                  </p>
+                <div className={styles.contentcardmain}>
+                  <div className={styles.textcardmain}>
+                    <h3
+                      className={`${getClassColor(player.main.class)} ${
+                        styles.mainchar
+                      }`}
+                    >
+                      {player.main.name}
+                    </h3>
+                    {/* <p>{player.class}</p> */}
+                    <p>
+                      {player.main.token} {countSetValues(player)}p
+                    </p>
+                  </div>
+                  <div>
+                    <button
+                      onClick={(e) => openEditModal(player)}
+                      className={styles.editbutton}
+                    >
+                      <BiPencil />
+                    </button>
+                  </div>
                 </div>
                 <p
                   className={`${getClassColor(player.alt.class)} ${
@@ -269,6 +260,9 @@ function PlayerCard({
           <p>Invalid players data</p>
         )}
       </div>
+      {editModal ? (
+        <EditModal setEditModal={setEditModal} player={playerToEdit} />
+      ) : null}
 
       {displayModal ? (
         <SetModal

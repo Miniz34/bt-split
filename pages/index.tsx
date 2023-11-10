@@ -414,6 +414,7 @@ export default function Home({
                     toggleIcons={toggleIcons}
                     setToggleIcons={setToggleIcons}
                     removePlayer={removePlayer}
+                    setInputModal={setInputModal}
                   />
                 </div>
               </div>

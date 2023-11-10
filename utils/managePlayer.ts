@@ -224,3 +224,78 @@ export async function removePlayerFromRaids(playerId: any) {
     return { ok: false };
   }
 }
+
+export const editPlayer = async (playerData: any) => {
+  try {
+    const currentDate = new Date();
+    const isoDate = currentDate.toISOString();
+
+    const getTokenType = (value: string) => {
+      if (value === null) {
+        return null;
+      } else if (value === "Mage" || value === "Hunter" || value === "Druid") {
+        return "Mystic";
+      } else if (
+        value === "Priest" ||
+        value === "Paladin" ||
+        value === "Shaman"
+      ) {
+        return "Venerated";
+      } else if (
+        value === "Monk" ||
+        value === "Rogue" ||
+        value === "Evoker" ||
+        value === "Warrior"
+      ) {
+        return "Zenith";
+      } else if (value === "DH" || value === "DK" || value === "Warlock") {
+        return "Dreadful";
+      } else {
+        return null;
+      }
+    };
+
+    const response = await fetch("/api/updatePlayer", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json", // Set the content type for JSON data
+      },
+      body: JSON.stringify({
+        _id: playerData._id,
+        main: {
+          name: playerData.name,
+          class: playerData.class,
+          role: playerData.role,
+          token: getTokenType(playerData.class),
+          // raid: null,
+        },
+        alt: {
+          name: playerData.alt,
+
+          //TODO remove caps class
+          class: playerData.altClass,
+          role: playerData.altRole,
+          // raid: null,
+        },
+
+        set: {
+          head: null,
+          shoulders: null,
+          chest: null,
+          hands: null,
+          legs: null,
+        },
+        // lastModified: isoDate,
+      }),
+    });
+
+    if (response.ok) {
+      const result = await response.json();
+      console.log("Player created:", result);
+    } else {
+      console.error("Failed to create player");
+    }
+  } catch (error) {
+    console.error("Error creating player:", error);
+  }
+};

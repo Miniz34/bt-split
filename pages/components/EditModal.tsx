@@ -123,7 +123,7 @@ const EditModal = ({ setEditModal, player }: any) => {
         <div className={styles.modalcontent}>
           <div className={styles.inputmodalheader}>
             <h5 className={styles.inputmodaltitle}>
-              Edit {player ? player.main.nam : null}
+              Edit {player ? player.main.name : null}
             </h5>
             <button
               type="button"

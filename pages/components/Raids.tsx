@@ -746,6 +746,10 @@ function Raids({ compo, toggleIcons }: any) {
         </div>
 
         <div className={styles.raiddatacontainer}>
+          Mystic : miniz holis / maelstro scorpio <br />
+          Zenith : stormya cerise / Snockie namo <br />
+          Dreadful : zhoop teito / araka falkar <br />
+          Venerated : nakah Yele / arthoss bruce
           <div className={styles.raidbtncontainer}>
             <button
               onClick={(e) => setDifficultyToken("NORMAL")}

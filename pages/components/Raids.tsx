@@ -776,21 +776,22 @@ function Raids({ compo, toggleIcons }: any) {
                     <span className={styles.tokenneedtitle}>Zenith </span>
                     <span>
                       {" "}
-                      <GiCenturionHelmet /> Araka Stormya{" "}
+                      <GiCenturionHelmet />
+                      Cérisay Araka Stormya{" "}
                     </span>
                     <span>
                       {" "}
-                      <GiSpikedShoulderArmor /> Nafeta Stormya{" "}
+                      <GiSpikedShoulderArmor /> Cérisay Stormya{" "}
                     </span>
                     <span>
-                      <GiChestArmor /> Nafeta Stormya{" "}
+                      <GiChestArmor /> Cérisay Stormya{" "}
                     </span>
                     <span>
                       {" "}
-                      <GiWinterGloves /> Snockie Araka{" "}
+                      <GiWinterGloves /> Cérisay Snockie Araka{" "}
                     </span>
                     <span>
-                      <PiPantsFill /> Nafeta{" "}
+                      <PiPantsFill /> Cérisay{" "}
                     </span>
                   </div>
                 </div>
@@ -873,21 +874,22 @@ function Raids({ compo, toggleIcons }: any) {
                     <span className={styles.tokenneedtitle}>Zenith </span>
                     <span>
                       {" "}
-                      <GiCenturionHelmet /> Cérisay Azerane{" "}
+                      <GiCenturionHelmet /> Azerane{" "}
                     </span>
                     <span>
                       {" "}
-                      <GiSpikedShoulderArmor /> Namo skyrix{" "}
+                      <GiSpikedShoulderArmor />
+                      Nafeta Namo skyrix{" "}
                     </span>
                     <span>
-                      <GiChestArmor /> Cérisay skyrix{" "}
+                      <GiChestArmor /> Nafeta skyrix{" "}
                     </span>
                     <span>
                       {" "}
-                      <GiWinterGloves /> Cérisay{" "}
+                      <GiWinterGloves />{" "}
                     </span>
                     <span>
-                      <PiPantsFill /> Cérisay skyrix (Snockie){" "}
+                      <PiPantsFill /> Nafeta skyrix (Snockie){" "}
                     </span>
                   </div>
                 </div>

@@ -754,21 +754,21 @@ function Raids({ compo, toggleIcons }: any) {
                     <span className={styles.tokenneedtitle}>Mystic </span>
                     <span>
                       {" "}
-                      <GiCenturionHelmet /> Personne{" "}
+                      <GiCenturionHelmet /> ...{" "}
                     </span>
                     <span>
                       {" "}
-                      <GiSpikedShoulderArmor /> Miniz{" "}
+                      <GiSpikedShoulderArmor /> Holis{" "}
                     </span>
                     <span>
                       {" "}
-                      <GiChestArmor /> Miniz{" "}
+                      <GiChestArmor /> Ithara{" "}
                     </span>
                     <span>
-                      <GiWinterGloves /> Miniz Maelstro{" "}
+                      <GiWinterGloves /> Holis Ithara{" "}
                     </span>
                     <span>
-                      <PiPantsFill /> Personne
+                      <PiPantsFill /> Ithara
                     </span>
                   </div>
 
@@ -776,21 +776,21 @@ function Raids({ compo, toggleIcons }: any) {
                     <span className={styles.tokenneedtitle}>Zenith </span>
                     <span>
                       {" "}
-                      <GiCenturionHelmet /> Cérisay Araka{" "}
+                      <GiCenturionHelmet /> Araka Stormya{" "}
                     </span>
                     <span>
                       {" "}
-                      <GiSpikedShoulderArmor /> Namo{" "}
+                      <GiSpikedShoulderArmor /> Nafeta Stormya{" "}
                     </span>
                     <span>
-                      <GiChestArmor /> Cérisay{" "}
+                      <GiChestArmor /> Nafeta Stormya{" "}
                     </span>
                     <span>
                       {" "}
-                      <GiWinterGloves /> Cérisay Arakarg{" "}
+                      <GiWinterGloves /> Snockie Araka{" "}
                     </span>
                     <span>
-                      <PiPantsFill /> Cérisay{" "}
+                      <PiPantsFill /> Nafeta{" "}
                     </span>
                   </div>
                 </div>
@@ -800,19 +800,19 @@ function Raids({ compo, toggleIcons }: any) {
                     <div className={styles.tokenneedlist}>
                       <span className={styles.tokenneedtitle}> Dreadful </span>
                       <span>
-                        <GiCenturionHelmet /> Lumi Falkar{" "}
+                        <GiCenturionHelmet /> Lumi zhoop{" "}
                       </span>
                       <span>
-                        <GiSpikedShoulderArmor /> Lumi Falkar{" "}
+                        <GiSpikedShoulderArmor /> Lumi zhoop{" "}
                       </span>
                       <span>
-                        <GiChestArmor /> Lumi Falkar{" "}
+                        <GiChestArmor /> Lumi zhoop{" "}
                       </span>
                       <span>
-                        <GiWinterGloves /> Lumi Falkar{" "}
+                        <GiWinterGloves /> Lumi zhoop{" "}
                       </span>
                       <span>
-                        <PiPantsFill /> Lumi Falkar{" "}
+                        <PiPantsFill /> Lumi zhoop{" "}
                       </span>
                     </div>
 
@@ -820,11 +820,11 @@ function Raids({ compo, toggleIcons }: any) {
                       <span className={styles.tokenneedtitle}> Venerated </span>
                       <span>
                         {" "}
-                        <GiCenturionHelmet /> Nakah Yele
+                        <GiCenturionHelmet /> Gaildrat Nakah
                       </span>
                       <span>
                         {" "}
-                        <GiSpikedShoulderArmor /> personne{" "}
+                        <GiSpikedShoulderArmor /> Gaildrat{" "}
                       </span>
                       <span>
                         {" "}
@@ -832,11 +832,11 @@ function Raids({ compo, toggleIcons }: any) {
                       </span>
                       <span>
                         {" "}
-                        <GiWinterGloves /> personne{" "}
+                        <GiWinterGloves /> ...{" "}
                       </span>
                       <span>
                         {" "}
-                        <PiPantsFill /> Yele Nakah
+                        <PiPantsFill /> Yele Gaildrat Nakah
                       </span>
                     </div>
                   </div>
@@ -851,21 +851,21 @@ function Raids({ compo, toggleIcons }: any) {
                     <span className={styles.tokenneedtitle}>Mystic </span>
                     <span>
                       {" "}
-                      <GiCenturionHelmet /> Personne{" "}
+                      <GiCenturionHelmet /> ...{" "}
                     </span>
                     <span>
                       {" "}
-                      <GiSpikedShoulderArmor /> Holis Scorpio{" "}
+                      <GiSpikedShoulderArmor /> Miniz{" "}
                     </span>
                     <span>
                       {" "}
-                      <GiChestArmor /> Ithara Scorpio{" "}
+                      <GiChestArmor /> Miniz{" "}
                     </span>
                     <span>
-                      <GiWinterGloves /> Ithara Holis{" "}
+                      <GiWinterGloves /> Miniz Maelstro{" "}
                     </span>
                     <span>
-                      <PiPantsFill /> Ithara
+                      <PiPantsFill />
                     </span>
                   </div>
 
@@ -873,21 +873,21 @@ function Raids({ compo, toggleIcons }: any) {
                     <span className={styles.tokenneedtitle}>Zenith </span>
                     <span>
                       {" "}
-                      <GiCenturionHelmet /> Azerane Stormya{" "}
+                      <GiCenturionHelmet /> Cérisay Azerane{" "}
                     </span>
                     <span>
                       {" "}
-                      <GiSpikedShoulderArmor /> Nafeta Skyrix Stormya{" "}
+                      <GiSpikedShoulderArmor /> Namo skyrix{" "}
                     </span>
                     <span>
-                      <GiChestArmor /> Nafeta Skyrix Stormya{" "}
+                      <GiChestArmor /> Cérisay skyrix{" "}
                     </span>
                     <span>
                       {" "}
-                      <GiWinterGloves /> Snockie{" "}
+                      <GiWinterGloves /> Cérisay{" "}
                     </span>
                     <span>
-                      <PiPantsFill /> Nafeta Skyrix/Snockie{" "}
+                      <PiPantsFill /> Cérisay skyrix (Snockie){" "}
                     </span>
                   </div>
                 </div>
@@ -897,19 +897,19 @@ function Raids({ compo, toggleIcons }: any) {
                     <div className={styles.tokenneedlist}>
                       <span className={styles.tokenneedtitle}>Dreadful </span>
                       <span>
-                        <GiCenturionHelmet /> Krocky Zhoop{" "}
+                        <GiCenturionHelmet /> Krocky Falkar{" "}
                       </span>
                       <span>
-                        <GiSpikedShoulderArmor /> Krocky Zhoop{" "}
+                        <GiSpikedShoulderArmor /> Krocky Falkar{" "}
                       </span>
                       <span>
-                        <GiChestArmor /> Krocky Zhoop{" "}
+                        <GiChestArmor /> Krocky Falkar{" "}
                       </span>
                       <span>
-                        <GiWinterGloves /> Krocky Zhoop{" "}
+                        <GiWinterGloves /> Krocky Falkar{" "}
                       </span>
                       <span>
-                        <PiPantsFill /> Krocky Zhoop{" "}
+                        <PiPantsFill /> Krocky Falkar{" "}
                       </span>
                     </div>
 
@@ -917,11 +917,11 @@ function Raids({ compo, toggleIcons }: any) {
                       <span className={styles.tokenneedtitle}>Venerated </span>
                       <span>
                         {" "}
-                        <GiCenturionHelmet /> Gaildrat Bruce
+                        <GiCenturionHelmet /> Bruce
                       </span>
                       <span>
                         {" "}
-                        <GiSpikedShoulderArmor /> Gaildrat Pydd{" "}
+                        <GiSpikedShoulderArmor /> Pydd{" "}
                       </span>
                       <span>
                         {" "}
@@ -933,7 +933,7 @@ function Raids({ compo, toggleIcons }: any) {
                       </span>
                       <span>
                         {" "}
-                        <PiPantsFill /> Gaildrat Bruce
+                        <PiPantsFill /> Bruce
                       </span>
                     </div>
                   </div>

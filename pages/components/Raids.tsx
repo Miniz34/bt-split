@@ -781,7 +781,7 @@ function Raids({ compo, toggleIcons }: any) {
                     </span>
                     <span>
                       {" "}
-                      <GiSpikedShoulderArmor /> Cérisay Stormya{" "}
+                      <GiSpikedShoulderArmor /> Cérisay Namo Stormya{" "}
                     </span>
                     <span>
                       <GiChestArmor /> Cérisay Stormya{" "}
@@ -878,7 +878,7 @@ function Raids({ compo, toggleIcons }: any) {
                     </span>
                     <span>
                       {" "}
-                      <GiSpikedShoulderArmor /> Nafeta Namo skyrix{" "}
+                      <GiSpikedShoulderArmor /> Nafeta skyrix{" "}
                     </span>
                     <span>
                       <GiChestArmor /> Nafeta skyrix{" "}

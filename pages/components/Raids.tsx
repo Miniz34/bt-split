@@ -48,7 +48,7 @@ function Raids({ compo, toggleIcons }: any) {
   const raidOne: any = [];
   const raidOneToken: any = [];
 
-  const [difficultyToken, setDifficultyToken] = useState("NORMAL");
+  const [difficultyToken, setDifficultyToken] = useState("HEROIC");
 
   // if (compo) {
   //   compo.filter((char: any) => {
@@ -746,10 +746,45 @@ function Raids({ compo, toggleIcons }: any) {
         </div>
 
         <div className={styles.raiddatacontainer}>
-          Mystic : Lezgongue Holis Scorpio / Maelstro Miniz <br />
-          Zenith : Stormya Cerise Azerane / Snockie Namo Lumi <br />
-          Dreadful : Zhoop Teito / Falkar Seele <br />
-          Venerated : Nakah Yele Gaildrat / Arthoss Bruce Pydd
+          <div className={styles.raidattrib}>
+            <div className={styles.raidone}>
+              <p>
+                Mystic : <GiCenturionHelmet />: <GiSpikedShoulderArmor />:{" "}
+                <GiChestArmor />: <GiWinterGloves />: <PiPantsFill />:
+              </p>
+              <p>
+                Zenith : <GiCenturionHelmet />: <GiSpikedShoulderArmor />:{" "}
+                <GiChestArmor />: <GiWinterGloves />: <PiPantsFill />:{" "}
+              </p>
+              <p>
+                Dreadful : <GiCenturionHelmet />: <GiSpikedShoulderArmor />:{" "}
+                <GiChestArmor />: <GiWinterGloves />: <PiPantsFill />:{" "}
+              </p>
+              <p>
+                Venerated : <GiCenturionHelmet />: <GiSpikedShoulderArmor />:{" "}
+                <GiChestArmor />: <GiWinterGloves />: <PiPantsFill />:
+              </p>
+            </div>
+            <div className={styles.raidone}>
+              <p>
+                Mystic : <GiCenturionHelmet />: <GiSpikedShoulderArmor />:{" "}
+                <GiChestArmor />: <GiWinterGloves />: <PiPantsFill />:
+              </p>
+              <p>
+                Zenith : <GiCenturionHelmet />: <GiSpikedShoulderArmor />:{" "}
+                <GiChestArmor />: <GiWinterGloves />: <PiPantsFill />:{" "}
+              </p>
+              <p>
+                Dreadful : <GiCenturionHelmet />: <GiSpikedShoulderArmor />:{" "}
+                <GiChestArmor />: <GiWinterGloves />: <PiPantsFill />:{" "}
+              </p>
+              <p>
+                Venerated : <GiCenturionHelmet />: <GiSpikedShoulderArmor />:{" "}
+                <GiChestArmor />: <GiWinterGloves />: <PiPantsFill />:
+              </p>
+            </div>
+          </div>
+
           <div className={styles.raidbtncontainer}>
             <button
               onClick={(e) => setDifficultyToken("NORMAL")}

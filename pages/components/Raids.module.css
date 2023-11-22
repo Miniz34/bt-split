@@ -152,6 +152,12 @@
   width: 100%;
 }
 
+.raidattrib {
+  border: solid red 2px;
+  display: flex;
+  justify-content: space-around;
+}
+
 .playerinraid {
   margin: 0;
 }

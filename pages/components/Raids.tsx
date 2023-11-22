@@ -748,40 +748,197 @@ function Raids({ compo, toggleIcons }: any) {
         <div className={styles.raiddatacontainer}>
           <div className={styles.raidattrib}>
             <div className={styles.raidone}>
-              <p>
-                Mystic : <GiCenturionHelmet />: <GiSpikedShoulderArmor />:{" "}
-                <GiChestArmor />: <GiWinterGloves />: <PiPantsFill />:
-              </p>
-              <p>
-                Zenith : <GiCenturionHelmet />: <GiSpikedShoulderArmor />:{" "}
-                <GiChestArmor />: <GiWinterGloves />: <PiPantsFill />:{" "}
-              </p>
-              <p>
-                Dreadful : <GiCenturionHelmet />: <GiSpikedShoulderArmor />:{" "}
-                <GiChestArmor />: <GiWinterGloves />: <PiPantsFill />:{" "}
-              </p>
-              <p>
-                Venerated : <GiCenturionHelmet />: <GiSpikedShoulderArmor />:{" "}
-                <GiChestArmor />: <GiWinterGloves />: <PiPantsFill />:
-              </p>
+              <div className={styles.tokensneed}>
+                <div className={styles.tokensneedflex}>
+                  <div className={styles.tokenneedlist}>
+                    <span className={styles.tokenneedtitle}>Mystic </span>
+                    <span>
+                      {" "}
+                      <GiCenturionHelmet /> Personne{" "}
+                    </span>
+                    <span>
+                      {" "}
+                      <GiSpikedShoulderArmor /> Miniz{" "}
+                    </span>
+                    <span>
+                      {" "}
+                      <GiChestArmor /> Miniz{" "}
+                    </span>
+                    <span>
+                      <GiWinterGloves /> Miniz Maelstro{" "}
+                    </span>
+                    <span>
+                      <PiPantsFill /> Personne
+                    </span>
+                  </div>
+
+                  <div className={styles.tokenneedlist}>
+                    <span className={styles.tokenneedtitle}>Zenith </span>
+                    <span>
+                      {" "}
+                      <GiCenturionHelmet /> Cérisay Araka{" "}
+                    </span>
+                    <span>
+                      {" "}
+                      <GiSpikedShoulderArmor /> Namo{" "}
+                    </span>
+                    <span>
+                      <GiChestArmor /> Cérisay{" "}
+                    </span>
+                    <span>
+                      {" "}
+                      <GiWinterGloves /> Cérisay Arakarg{" "}
+                    </span>
+                    <span>
+                      <PiPantsFill /> Cérisay{" "}
+                    </span>
+                  </div>
+                </div>
+
+                <div className={styles.tokensneed}>
+                  <div className={styles.tokensneedflex}>
+                    <div className={styles.tokenneedlist}>
+                      <span className={styles.tokenneedtitle}> Dreadful </span>
+                      <span>
+                        <GiCenturionHelmet /> Lumi Falkar{" "}
+                      </span>
+                      <span>
+                        <GiSpikedShoulderArmor /> Lumi Falkar{" "}
+                      </span>
+                      <span>
+                        <GiChestArmor /> Lumi Falkar{" "}
+                      </span>
+                      <span>
+                        <GiWinterGloves /> Lumi Falkar{" "}
+                      </span>
+                      <span>
+                        <PiPantsFill /> Lumi Falkar{" "}
+                      </span>
+                    </div>
+
+                    <div className={styles.tokenneedlist}>
+                      <span className={styles.tokenneedtitle}> Venerated </span>
+                      <span>
+                        {" "}
+                        <GiCenturionHelmet /> Nakah Yele
+                      </span>
+                      <span>
+                        {" "}
+                        <GiSpikedShoulderArmor /> personne{" "}
+                      </span>
+                      <span>
+                        {" "}
+                        <GiChestArmor /> Yele{" "}
+                      </span>
+                      <span>
+                        {" "}
+                        <GiWinterGloves /> personne{" "}
+                      </span>
+                      <span>
+                        {" "}
+                        <PiPantsFill /> Yele Nakah
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+
             <div className={styles.raidone}>
-              <p>
-                Mystic : <GiCenturionHelmet />: <GiSpikedShoulderArmor />:{" "}
-                <GiChestArmor />: <GiWinterGloves />: <PiPantsFill />:
-              </p>
-              <p>
-                Zenith : <GiCenturionHelmet />: <GiSpikedShoulderArmor />:{" "}
-                <GiChestArmor />: <GiWinterGloves />: <PiPantsFill />:{" "}
-              </p>
-              <p>
-                Dreadful : <GiCenturionHelmet />: <GiSpikedShoulderArmor />:{" "}
-                <GiChestArmor />: <GiWinterGloves />: <PiPantsFill />:{" "}
-              </p>
-              <p>
-                Venerated : <GiCenturionHelmet />: <GiSpikedShoulderArmor />:{" "}
-                <GiChestArmor />: <GiWinterGloves />: <PiPantsFill />:
-              </p>
+              <div className={styles.tokensneed}>
+                <div className={styles.tokensneedflex}>
+                  <div className={styles.tokenneedlist}>
+                    <span className={styles.tokenneedtitle}>Mystic </span>
+                    <span>
+                      {" "}
+                      <GiCenturionHelmet /> Personne{" "}
+                    </span>
+                    <span>
+                      {" "}
+                      <GiSpikedShoulderArmor /> Holis Scorpio{" "}
+                    </span>
+                    <span>
+                      {" "}
+                      <GiChestArmor /> Ithara Scorpio{" "}
+                    </span>
+                    <span>
+                      <GiWinterGloves /> Ithara Holis{" "}
+                    </span>
+                    <span>
+                      <PiPantsFill /> Ithara
+                    </span>
+                  </div>
+
+                  <div className={styles.tokenneedlist}>
+                    <span className={styles.tokenneedtitle}>Zenith </span>
+                    <span>
+                      {" "}
+                      <GiCenturionHelmet /> Azerane Stormya{" "}
+                    </span>
+                    <span>
+                      {" "}
+                      <GiSpikedShoulderArmor /> Nafeta Skyrix Stormya{" "}
+                    </span>
+                    <span>
+                      <GiChestArmor /> Nafeta Skyrix Stormya{" "}
+                    </span>
+                    <span>
+                      {" "}
+                      <GiWinterGloves /> Snockie{" "}
+                    </span>
+                    <span>
+                      <PiPantsFill /> Nafeta Skyrix/Snockie{" "}
+                    </span>
+                  </div>
+                </div>
+
+                <div className={styles.tokensneed}>
+                  <div className={styles.tokensneedflex}>
+                    <div className={styles.tokenneedlist}>
+                      <span className={styles.tokenneedtitle}>Dreadful </span>
+                      <span>
+                        <GiCenturionHelmet /> Krocky Zhoop{" "}
+                      </span>
+                      <span>
+                        <GiSpikedShoulderArmor /> Krocky Zhoop{" "}
+                      </span>
+                      <span>
+                        <GiChestArmor /> Krocky Zhoop{" "}
+                      </span>
+                      <span>
+                        <GiWinterGloves /> Krocky Zhoop{" "}
+                      </span>
+                      <span>
+                        <PiPantsFill /> Krocky Zhoop{" "}
+                      </span>
+                    </div>
+
+                    <div className={styles.tokenneedlist}>
+                      <span className={styles.tokenneedtitle}>Venerated </span>
+                      <span>
+                        {" "}
+                        <GiCenturionHelmet /> Gaildrat Bruce
+                      </span>
+                      <span>
+                        {" "}
+                        <GiSpikedShoulderArmor /> Gaildrat Pydd{" "}
+                      </span>
+                      <span>
+                        {" "}
+                        <GiChestArmor /> Pydd Bruce{" "}
+                      </span>
+                      <span>
+                        {" "}
+                        <GiWinterGloves /> Pydd{" "}
+                      </span>
+                      <span>
+                        {" "}
+                        <PiPantsFill /> Gaildrat Bruce
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 

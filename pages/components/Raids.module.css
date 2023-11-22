@@ -144,6 +144,40 @@
   line-height: 1;
 }
 
+.raidone {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.tokensneed {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.tokensneedflex {
+  display: flex;
+  justify-content: space-around;
+  padding-left: 0px;
+  margin-top: 10px;
+}
+
+.tokenneedlist {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.tokenneedtitle {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.attribspecific {
+  max-width: 100%;
+}
+
 .tokencount {
   display: flex;
   flex-direction: row;

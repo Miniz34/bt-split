@@ -788,7 +788,7 @@ function Raids({ compo, toggleIcons }: any) {
                     </span>
                     <span>
                       {" "}
-                      <GiWinterGloves /> Cérisay Snockie Araka{" "}
+                      <GiWinterGloves /> Cérisay Araka{" "}
                     </span>
                     <span>
                       <PiPantsFill /> Cérisay{" "}
@@ -878,15 +878,14 @@ function Raids({ compo, toggleIcons }: any) {
                     </span>
                     <span>
                       {" "}
-                      <GiSpikedShoulderArmor />
-                      Nafeta Namo skyrix{" "}
+                      <GiSpikedShoulderArmor /> Nafeta Namo skyrix{" "}
                     </span>
                     <span>
                       <GiChestArmor /> Nafeta skyrix{" "}
                     </span>
                     <span>
                       {" "}
-                      <GiWinterGloves />{" "}
+                      <GiWinterGloves /> Snockie
                     </span>
                     <span>
                       <PiPantsFill /> Nafeta skyrix (Snockie){" "}
